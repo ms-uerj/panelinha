@@ -1,5 +1,8 @@
 package model;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class Usuario {
 
 	private String matricula;
@@ -8,6 +11,7 @@ public class Usuario {
 	private String email;
 	private String senha;
 	private String sexo;
+	private Calendar data_cadastro;
 
 	
 	
@@ -73,5 +77,15 @@ public class Usuario {
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
+
+	public Calendar getData_cadastro() {
+		return data_cadastro;
+	}
+
+	public void setData_cadastro(Calendar data_cadastro) {
+		this.data_cadastro = data_cadastro;
+	}
+	
+	
 
 }
