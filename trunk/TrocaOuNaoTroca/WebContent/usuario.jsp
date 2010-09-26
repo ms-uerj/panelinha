@@ -1,0 +1,56 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="model.Usuario, model.Item" %>
+<%@ page import="java.util.Iterator, java.util.ArrayList" %>
+
+<% Usuario usuario = (Usuario) request.getAttribute("usuario");
+   ArrayList<Item> itens = (ArrayList<Item>) request.getAttribute("itens"); %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h2><b>Dados do usuário</b></h2><hr> 
+<br><br>
+
+<% if(usuario!=null){ %>
+<b>Nome: </b><%=usuario.getNome() %> <%=usuario.getSobrenome() %><br><br>
+<b>Email: </b><%=usuario.getEmail() %><br><br>
+<b>Sexo: </b><%=usuario.getSexo() %><br><br>
+<b>Usuário desde: </b><br><br>
+<b>Área: </b><%=usuario.getArea() %><br><br><br>
+
+<h3>Galeria de itens para troca</h3><hr>
+
+<table border="1">
+<tr>
+<td>Título</td>
+<td>Categoria</td>
+<td>Data de Cadastro</td>
+<tr>
+<% Iterator iterator = itens.iterator();
+   while (iterator.hasNext()){ 
+      Item item = (Item) iterator.next(); %>
+<tr>
+<td><%=item.getTitulo() %></td>
+<td><%=item.getCategoria() %></td>
+<td></td>
+<tr>
+
+<% } %>
+
+
+
+
+<% }else{ %>
+<%=request.getAttribute("erro") %>
+<% } %>
+
+
+
+</body>
+</html>

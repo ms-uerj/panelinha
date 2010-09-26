@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Usuario {
 
+	private int id;
 	private String matricula;
 	private String nome;
 	private String sobrenome;
@@ -12,6 +13,7 @@ public class Usuario {
 	private String senha;
 	private String sexo;
 	private Calendar data_cadastro;
+	private String area;
 
 	
 	
@@ -85,6 +87,25 @@ public class Usuario {
 	public void setData_cadastro(Calendar data_cadastro) {
 		this.data_cadastro = data_cadastro;
 	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
+	
 	
 	
 
