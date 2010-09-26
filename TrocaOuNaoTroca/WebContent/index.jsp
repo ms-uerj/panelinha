@@ -40,6 +40,7 @@
 					<center>
 						Entre e troque!
 						<form action="Login" method="POST">
+						<a href="PaginaUsuario?cod=1">clique</a>
 						<br>
 						<br>
 						<font size=2>LOGIN:</font>&nbsp;<input type="text" name="login">

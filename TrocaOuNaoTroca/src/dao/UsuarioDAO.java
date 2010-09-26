@@ -70,7 +70,8 @@ public class UsuarioDAO {
 	public static Usuario buscarLogin(String login, String senha)
 			throws ClassNotFoundException, SQLException {
 
-		String sql = "Select * from tb_usuario where matricula=? and senha=?";
+		String sql = "Select u.*, a.descricao as area from tb_usuario as u, tb_area as a where " +
+				"u.matricula=? and u.senha=? and u.fk_area=a.id_area";
 		Connection conn = Conexao.obterConexaoMySQL();
 		PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -83,11 +84,51 @@ public class UsuarioDAO {
 		if (rs.next()) {
 			usuario = new Usuario();
 
+			usuario.setId(rs.getInt("id_usuario"));
 			usuario.setMatricula(login);
 			usuario.setEmail(rs.getString("email"));
 			usuario.setNome(rs.getString("nome"));
 			usuario.setSobrenome(rs.getString("sobrenome"));
 			usuario.setSexo(rs.getString("sexo"));
+			usuario.setArea(rs.getString("area"));
+
+			Date data = rs.getDate("data_cadastro");
+			GregorianCalendar data_cadastro = new GregorianCalendar();
+			data_cadastro.setTime(data);
+			usuario.setData_cadastro(data_cadastro);
+
+		}
+
+		rs.close();
+		ps.close();
+		conn.close();
+
+		return usuario;
+
+	}
+
+	public static Usuario buscarUsuario(String codigo)
+			throws ClassNotFoundException, SQLException {
+
+		String sql = "Select u.*, a.descricao as area from tb_usuario as u, tb_area as a where id_usuario=? and u.fk_area=a.id_area";
+		Connection conn = Conexao.obterConexaoMySQL();
+		PreparedStatement ps = conn.prepareStatement(sql);
+
+		ps.setInt(1, Integer.parseInt(codigo));
+		ResultSet rs = ps.executeQuery();
+
+		Usuario usuario = null;
+
+		if (rs.next()) {
+			usuario = new Usuario();
+
+			usuario.setId(rs.getInt("id_usuario"));
+			usuario.setMatricula(rs.getString("matricula"));
+			usuario.setEmail(rs.getString("email"));
+			usuario.setNome(rs.getString("nome"));
+			usuario.setSobrenome(rs.getString("sobrenome"));
+			usuario.setSexo(rs.getString("sexo"));
+			usuario.setArea(rs.getString("area"));
 
 			Date data = rs.getDate("data_cadastro");
 			GregorianCalendar data_cadastro = new GregorianCalendar();
