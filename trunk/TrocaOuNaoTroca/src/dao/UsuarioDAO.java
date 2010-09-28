@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 import model.Usuario;
 
@@ -26,7 +23,8 @@ public class UsuarioDAO {
 	public static void cadastrarUsuario(Usuario usuario)
 			throws ClassNotFoundException, SQLException {
 
-		String sql = "Insert into tb_usuario (nome, email, senha, matricula, sobrenome, sexo, data_cadastro) values (?,?,?,?,?,?, current_date)";
+		String sql = "Insert into tb_usuario (nome, email, senha, matricula, sobrenome, sexo, data_cadastro) "
+				+ "values (?,?,?,?,?,?, current_date)";
 		Connection conn = Conexao.obterConexaoMySQL();
 		PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -70,8 +68,8 @@ public class UsuarioDAO {
 	public static Usuario buscarLogin(String login, String senha)
 			throws ClassNotFoundException, SQLException {
 
-		String sql = "Select u.*, a.descricao as area from tb_usuario as u, tb_area as a where " +
-				"u.matricula=? and u.senha=? and u.fk_area=a.id_area";
+		String sql = "Select u.*, a.descricao as area from tb_usuario as u, tb_area as a where "
+				+ "u.matricula=? and u.senha=? and u.fk_area=a.id_area";
 		Connection conn = Conexao.obterConexaoMySQL();
 		PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -91,11 +89,7 @@ public class UsuarioDAO {
 			usuario.setSobrenome(rs.getString("sobrenome"));
 			usuario.setSexo(rs.getString("sexo"));
 			usuario.setArea(rs.getString("area"));
-
-			Date data = rs.getDate("data_cadastro");
-			GregorianCalendar data_cadastro = new GregorianCalendar();
-			data_cadastro.setTime(data);
-			usuario.setData_cadastro(data_cadastro);
+			usuario.setData_cadastro(rs.getDate("data_cadastro"));
 
 		}
 
@@ -110,7 +104,8 @@ public class UsuarioDAO {
 	public static Usuario buscarUsuario(String codigo)
 			throws ClassNotFoundException, SQLException {
 
-		String sql = "Select u.*, a.descricao as area from tb_usuario as u, tb_area as a where id_usuario=? and u.fk_area=a.id_area";
+		String sql = "Select u.*, a.descricao as area from tb_usuario as u, tb_area as a " +
+				"where id_usuario=? and u.fk_area=a.id_area";
 		Connection conn = Conexao.obterConexaoMySQL();
 		PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -129,11 +124,7 @@ public class UsuarioDAO {
 			usuario.setSobrenome(rs.getString("sobrenome"));
 			usuario.setSexo(rs.getString("sexo"));
 			usuario.setArea(rs.getString("area"));
-
-			Date data = rs.getDate("data_cadastro");
-			GregorianCalendar data_cadastro = new GregorianCalendar();
-			data_cadastro.setTime(data);
-			usuario.setData_cadastro(data_cadastro);
+			usuario.setData_cadastro(rs.getDate("data_cadastro"));
 
 		}
 

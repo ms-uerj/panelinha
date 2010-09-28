@@ -6,12 +6,12 @@ public class Apostila extends Item {
 	private String editora;
 	private int edicao;
 	
-	public Apostila (String titulo, String descricao_item, String categoria, String imagem_item, String status_item, String autor, String editora, int edicao){
+	/*public Apostila (String titulo, String descricao_item, String categoria, String imagem_item, int status_item, String autor, String editora, int edicao){
 		super(titulo, descricao_item, categoria, imagem_item, status_item);
 		this.autor = autor;
 		this.editora = editora;
 		this.edicao = edicao;
-	}
+	}*/
 	
 	public String getAutor() {
 		return autor;

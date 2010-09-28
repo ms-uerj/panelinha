@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="model.Usuario" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<% String erros = (String) request.getAttribute("erros");
+   String msg = (String) request.getAttribute("msg");
+   Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
+   
 <html xmlns="http://www.w3.org/1999/xhtml">
-<html>
 	<head>
 		<title>Troca ou N&atilde;o Troca?</title>
 		<meta name="author" content="Panelinh@"/>
@@ -30,17 +35,25 @@
 				<div id="logon">
 					<table width="100%" cellpadding="7">				
 						<tr>
-							<td align="left">Bem-vindo</td>
-							<td align="right"><input type="button" value="Cadastre-se">&nbsp;<input class="logar" type="button" value="Entrar"></td>
+							<td align="left">Bem-vindo! <% if(erros!=null){%>
+						                                   <%=erros %>
+						                                <% } %>
+						                                <% if(usuario!=null){%>
+						                                   <%="Usuário: "+usuario.getNome() %>
+						                                <% } %>
+						    </td>
+							<td align="right"><% if(usuario==null){ %><a href="cadastro.jsp">Cadastre-se &raquo;&nbsp;
+							                  <input class="logar" type="button" value="Entrar"></td><% } %>
 						</tr>
 					</table>
 				</div>		
-				
+				<% if(usuario==null){ %>
 				<div id="logon_extra">
 					<center>
 						Entre e troque!
 						<form action="Login" method="POST">
-						<a href="PaginaUsuario?cod=1">clique</a>
+						<a href="PaginaUsuario?cod=1">clique</a><br>
+						<a href="PaginaItem?cod=1">clique item</a>
 						<br>
 						<br>
 						<font size=2>LOGIN:</font>&nbsp;<input type="text" name="login">
@@ -53,6 +66,7 @@
 						</form>
 					</center>
 				</div>
+				<% } %>
 				
 				<div id="logo">Logo</div>			
 				

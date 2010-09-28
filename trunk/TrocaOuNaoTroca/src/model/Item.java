@@ -1,29 +1,23 @@
 package model;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class Item {
 
+	private int id;
 	private String titulo;
 	private String descricao_item;
 	private String categoria;
 	private String imagem_item;
 	private int status_item;
-	private Calendar data_cadastro;
+	private Date data_cadastro;
+	private int dono;
 
 	public Item() {
 		super();
 	}
 
-	public Item(String titulo, String descricao_item, String categoria,
-			String imagem_item, int status_item) {
-		super();
-		this.titulo = titulo;
-		this.descricao_item = descricao_item;
-		this.categoria = categoria;
-		this.imagem_item = imagem_item;
-		this.status_item = status_item;
-	}
 
 	public String getTitulo() {
 		return titulo;
@@ -65,13 +59,35 @@ public class Item {
 		this.status_item = status_item;
 	}
 
-	public Calendar getData_cadastro() {
+	public Date getData_cadastro() {
 		return data_cadastro;
 	}
 
-	public void setData_cadastro(Calendar data_cadastro) {
+	public void setData_cadastro(Date data_cadastro) {
 		this.data_cadastro = data_cadastro;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public int getDono() {
+		return dono;
+	}
+
+
+	public void setDono(int dono) {
+		this.dono = dono;
+	}
+	
+	
+	
+	
 	
 	
 

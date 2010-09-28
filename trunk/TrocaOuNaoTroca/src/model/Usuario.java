@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class Usuario {
@@ -12,7 +11,7 @@ public class Usuario {
 	private String email;
 	private String senha;
 	private String sexo;
-	private Calendar data_cadastro;
+	private Date data_cadastro;
 	private String area;
 
 	
@@ -80,11 +79,11 @@ public class Usuario {
 		this.sobrenome = sobrenome;
 	}
 
-	public Calendar getData_cadastro() {
+	public Date getData_cadastro() {
 		return data_cadastro;
 	}
 
-	public void setData_cadastro(Calendar data_cadastro) {
+	public void setData_cadastro(Date data_cadastro) {
 		this.data_cadastro = data_cadastro;
 	}
 
