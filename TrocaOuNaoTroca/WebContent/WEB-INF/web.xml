@@ -38,6 +38,24 @@
 		<servlet-class>
 		servlet.Galeria</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		PaginaItem</display-name>
+		<servlet-name>PaginaItem</servlet-name>
+		<servlet-class>
+		servlet.PaginaItem</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		IniciarTroca</display-name>
+		<servlet-name>IniciarTroca</servlet-name>
+		<servlet-class>
+		servlet.IniciarTroca</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>CadastrarUsuario</servlet-name>
 		<url-pattern>/CadastrarUsuario</url-pattern>
@@ -53,6 +71,14 @@
 	<servlet-mapping>
 		<servlet-name>Galeria</servlet-name>
 		<url-pattern>/Galeria</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PaginaItem</servlet-name>
+		<url-pattern>/PaginaItem</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>IniciarTroca</servlet-name>
+		<url-pattern>/IniciarTroca</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

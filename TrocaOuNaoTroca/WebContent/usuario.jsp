@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="model.Usuario, model.Item" %>
-<%@ page import="java.util.Iterator, java.util.ArrayList" %>
+<%@ page import="java.util.Iterator, java.util.ArrayList, java.text.SimpleDateFormat" %>
 
 <% Usuario usuario = (Usuario) request.getAttribute("usuario");
    ArrayList<Item> itens = (ArrayList<Item>) request.getAttribute("itens"); %>
@@ -17,11 +17,14 @@
 <h2><b>Dados do usuário</b></h2><hr> 
 <br><br>
 
-<% if(usuario!=null){ %>
+<% SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+   if(usuario!=null){ 
+    	 String dtu = formatador.format(usuario.getData_cadastro().getTime());
+%>
 <b>Nome: </b><%=usuario.getNome() %> <%=usuario.getSobrenome() %><br><br>
 <b>Email: </b><%=usuario.getEmail() %><br><br>
 <b>Sexo: </b><%=usuario.getSexo() %><br><br>
-<b>Usuário desde: </b><br><br>
+<b>Usuário desde: </b><%=dtu %><br><br>
 <b>Área: </b><%=usuario.getArea() %><br><br><br>
 
 <h3>Galeria de itens para troca</h3><hr>
@@ -32,13 +35,17 @@
 <td>Categoria</td>
 <td>Data de Cadastro</td>
 <tr>
+
 <% Iterator iterator = itens.iterator();
    while (iterator.hasNext()){ 
-      Item item = (Item) iterator.next(); %>
+      	Item item = (Item) iterator.next(); 
+	  	String dti = formatador.format(item.getData_cadastro().getTime());
+%>
+      
 <tr>
-<td><%=item.getTitulo() %></td>
+<td><a href="PaginaItem?cod=<%=item.getId() %>"><%=item.getTitulo() %></a></td>
 <td><%=item.getCategoria() %></td>
-<td></td>
+<td><%=dti %></td>
 <tr>
 
 <% } %>
@@ -50,7 +57,7 @@
 <%=request.getAttribute("erro") %>
 <% } %>
 
-
+</table>
 
 </body>
 </html>

@@ -57,35 +57,34 @@ public class Login extends HttpServlet {
 	}
 
 	protected void process(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException {
+			HttpServletResponse response) throws ServletException, IOException,
+			ClassNotFoundException {
 
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
-		
+
 		String erros = "";
 		HttpSession session = request.getSession();
-		
+
 		try {
 			Usuario usuario = UsuarioDAO.buscarLogin(login, senha);
-			
-			if(usuario==null){
-				erros = "Login e/ou senha inválidos";
-				session.setAttribute("erros", erros);
-			}
-			else{
+
+			if (usuario == null) {
+				erros += "Login e/ou senha inválidos";
+			} else {
 				session.setAttribute("usuario", usuario);
-				session.setAttribute("msg", "Login realizado com sucesso");
-			}	
+				request.setAttribute("msg", "Usuário: "+ usuario.getNome());
+			}
 		} catch (SQLException e) {
-			erros = "Não foi possível realizar esta operação. Tente novamente mais tarde";
+			erros += "Não foi possível realizar esta operação. Tente novamente mais tarde";
 		}
-		
-		
+
+		request.setAttribute("erros", erros);
+
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		rd.forward(request, response);
 		return;
-		
-		
+
 	}
 
 }
