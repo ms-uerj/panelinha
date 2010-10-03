@@ -4,25 +4,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <% Item item = (Item) request.getAttribute("item"); 
    SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
-   
- %>
+%>
 
 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title><%=item.getTitulo() %></title>
 </head>
 <body>
 
-<h2><b>Dados do Item</b></h2><hr> 
+<h2>Página do Item | <a href="index.jsp">Home</a></h2>
+<hr> 
 <br><br>
 
 <img width="250" height="300" src="<%=item.getImagem_item() %>"><br><br>
 
 <b>Título: </b><%=item.getTitulo() %><br>
 <b>Categoria: </b><%=item.getCategoria() %><br>
-<b>Data de cadastro: </b><%=formatador.format(item.getData_cadastro().getTime()) %><br>
+<b>Data de cadastro: </b><%=formatador.format(item.getData_cadastro().getTime()) %><br><br>
+
 <a href="PaginaUsuario?cod=<%=item.getDono() %>">Perfil do Dono &raquo;</a><br><br>
 
 <% if(item instanceof Livro){ 
@@ -54,7 +55,7 @@
 
 <% } } } }%>
 
-<b>Descrição: </b><%=item.getDescricao_item() %>
+<b>Descrição: </b><%=item.getDescricao_item() %><br><br>
 
 <% Usuario usuario = (Usuario) session.getAttribute("usuario");
    

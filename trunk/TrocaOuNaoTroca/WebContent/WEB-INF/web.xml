@@ -74,6 +74,15 @@
 		<servlet-class>
 		servlet.NovaTroca</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		CadastrarItem</display-name>
+		<servlet-name>CadastrarItem</servlet-name>
+		<servlet-class>
+		servlet.CadastrarItem</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>CadastrarUsuario</servlet-name>
 		<url-pattern>/CadastrarUsuario</url-pattern>
@@ -105,6 +114,10 @@
 	<servlet-mapping>
 		<servlet-name>NovaTroca</servlet-name>
 		<url-pattern>/NovaTroca</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CadastrarItem</servlet-name>
+		<url-pattern>/CadastrarItem</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

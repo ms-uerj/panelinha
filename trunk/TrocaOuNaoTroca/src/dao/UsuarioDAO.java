@@ -23,8 +23,8 @@ public class UsuarioDAO {
 	public static void cadastrarUsuario(Usuario usuario)
 			throws ClassNotFoundException, SQLException {
 
-		String sql = "Insert into tb_usuario (nome, email, senha, matricula, sobrenome, sexo, data_cadastro) "
-				+ "values (?,?,?,?,?,?, current_date)";
+		String sql = "Insert into tb_usuario (nome, email, senha, matricula, sobrenome, sexo, data_cadastro, fk_area) "
+				+ "values (?,?,?,?,?,?, current_date,?)";
 		Connection conn = Conexao.obterConexaoMySQL();
 		PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -34,6 +34,7 @@ public class UsuarioDAO {
 		ps.setString(4, usuario.getMatricula());
 		ps.setString(5, usuario.getSobrenome());
 		ps.setString(6, usuario.getSexo());
+		ps.setInt(7, Integer.parseInt(usuario.getArea()));
 
 		ps.execute();
 

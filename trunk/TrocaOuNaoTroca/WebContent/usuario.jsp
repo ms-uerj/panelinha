@@ -14,7 +14,8 @@
 </head>
 <body>
 
-<h2><b>Dados do usuário</b></h2><hr> 
+<h2><b>Dados do usuário | <a href="index.jsp">Home</a></h2>
+<hr> 
 <br><br>
 
 <% SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");

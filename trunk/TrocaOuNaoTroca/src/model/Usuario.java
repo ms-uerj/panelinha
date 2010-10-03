@@ -21,7 +21,7 @@ public class Usuario {
 	}
 
 	public Usuario(String email, String matricula, String nome, String senha,
-			String sexo, String sobrenome) {
+			String sexo, String sobrenome, String area) {
 		super();
 		this.email = email;
 		this.matricula = matricula;
@@ -29,6 +29,7 @@ public class Usuario {
 		this.senha = senha;
 		this.sexo = sexo;
 		this.sobrenome = sobrenome;
+		this.area = area;
 	}
 
 	public String getMatricula() {

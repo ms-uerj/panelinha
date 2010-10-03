@@ -91,8 +91,9 @@ public class PaginaUsuario extends HttpServlet {
 				}
 
 				request.setAttribute("itens", itens);
-
 				request.setAttribute("usuario", usuario);
+				
+				
 			}
 		} else {
 			request.setAttribute("erro", "Código Inválido");
