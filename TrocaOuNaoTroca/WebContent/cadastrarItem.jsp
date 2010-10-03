@@ -20,7 +20,7 @@
 
 <% if(usuario!= null){ %>
 
-<form method="post" action="CadastrarItem">
+<form method="POST" action="CadastrarItem">
 
 <b>
 
@@ -42,7 +42,7 @@ Descrição: <br>
 <textarea rows="5" cols="80" name="descricao"></textarea><br><br>
 
 <input type="submit" value="Cadastrar Item">
-<form>
+</form>
 
 <% } else{ %>
 É necessário estar logado para cadastrar novos itens em nosso sistema de trocas.

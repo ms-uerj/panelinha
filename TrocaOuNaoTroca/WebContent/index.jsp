@@ -55,7 +55,7 @@
 						<font size=2>LOGIN:</font>&nbsp;<input type="text" name="login">
 						<br>
 						<br>
-						<font size=2>SENHA:</font>&nbsp;<input type="text" name="senha">
+						<font size=2>SENHA:</font>&nbsp;<input type="password" name="senha">
 						<br>
 						<br>
 						<input type="submit" value="Entrar">

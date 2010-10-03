@@ -43,6 +43,7 @@ public class CadastrarItem extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
+		
 			process(request, response);
 		
 	}
@@ -62,6 +63,11 @@ public class CadastrarItem extends HttpServlet {
 		item.setDescricao_item(descricao);
 		item.setCategoria(categoria);
 		
+		HttpSession session = request.getSession();
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		
+		item.setDono(usuario.getId());
+		
 		String erro = null;
 		
 		try {
@@ -77,12 +83,11 @@ public class CadastrarItem extends HttpServlet {
 		String destino = "cadastrarItem.jsp";
 		
 		if(erro == null){
-			HttpSession session = request.getSession();
-			Usuario usuario = (Usuario) session.getAttribute("usuario");
 			destino = "PaginaUsuario?cod="+usuario.getId();
 		}
 		
 		request.setAttribute("erro", erro);
+		
 		
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
 		rd.forward(request, response);
