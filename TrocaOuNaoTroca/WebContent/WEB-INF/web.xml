@@ -56,6 +56,24 @@
 		<servlet-class>
 		servlet.IniciarTroca</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		PaginaTroca</display-name>
+		<servlet-name>PaginaTroca</servlet-name>
+		<servlet-class>
+		servlet.PaginaTroca</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		NovaTroca</display-name>
+		<servlet-name>NovaTroca</servlet-name>
+		<servlet-class>
+		servlet.NovaTroca</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>CadastrarUsuario</servlet-name>
 		<url-pattern>/CadastrarUsuario</url-pattern>
@@ -79,6 +97,14 @@
 	<servlet-mapping>
 		<servlet-name>IniciarTroca</servlet-name>
 		<url-pattern>/IniciarTroca</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PaginaTroca</servlet-name>
+		<url-pattern>/PaginaTroca</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>NovaTroca</servlet-name>
+		<url-pattern>/NovaTroca</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

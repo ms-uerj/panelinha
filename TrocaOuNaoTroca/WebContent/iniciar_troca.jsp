@@ -30,7 +30,7 @@ do usuário <a target="main" href="PaginaUsuario?cod=<%=u2.getId() %>"><%=u2.getN
 
 Selecione um de seus itens para trocar pelo item acima. Lembrando que ainda será necessário que <a target="main" href="PaginaUsuario?cod=<%=u2.getId() %>"><%=u2.getNome() %></a> aceite sua proposta.
 <br><br>
-<form action="EnviarProposta" method="post">
+<form action="NovaTroca" method="post">
 <table border="1">
 <tr>
 <td></td>
@@ -46,15 +46,19 @@ Selecione um de seus itens para trocar pelo item acima. Lembrando que ainda será
 %>
       
 <tr>
-<td><input type="radio" name="item1" value="<%=item.getId() %>"></td>
+<td><input type="radio" name="item1" value="<%=item.getId() %>" SELECTED></td>
 <td><a href="PaginaItem?cod=<%=item.getId() %>"><%=item.getTitulo() %></a></td>
 <td><%=item.getCategoria() %></td>
 <td><%=dti %></td>
 <tr>
 
 <% } %>
+</table>
+<br><br>
 <input type="hidden" value="<%=u2.getId() %>" name="user2">
 <input type="hidden" value="<%=i2.getId() %>" name="item2">
+
+<input type="submit" value="Confirmar">
 </form>
 
 

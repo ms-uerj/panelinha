@@ -56,10 +56,10 @@
 						<a href="PaginaItem?cod=1">clique item</a>
 						<br>
 						<br>
-						<font size=2>LOGIN:</font>&nbsp;<input type="text" name="login">
+						<font size=2>LOGIN:</font>&nbsp;<input type="text" name="login" value="111111">
 						<br>
 						<br>
-						<font size=2>SENHA:</font>&nbsp;<input type="text" name="senha">
+						<font size=2>SENHA:</font>&nbsp;<input type="text" name="senha" value="senha">
 						<br>
 						<br>
 						<input type="submit" value="Confirmar">&nbsp;<input type="button" value="Cancelar">

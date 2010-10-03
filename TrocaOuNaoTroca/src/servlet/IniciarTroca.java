@@ -87,7 +87,7 @@ public class IniciarTroca extends HttpServlet {
 			ArrayList<Item> itens = null;
 
 			try {
-				itens = ItemDAO.buscarItems(String.valueOf(logado.getId()));
+				itens = ItemDAO.buscarItens(String.valueOf(logado.getId()));
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (SQLException e) {
