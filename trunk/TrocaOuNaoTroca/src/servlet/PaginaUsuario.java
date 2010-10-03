@@ -81,7 +81,7 @@ public class PaginaUsuario extends HttpServlet {
 
 				try {
 
-					itens = ItemDAO.buscarItems(codigo);
+					itens = ItemDAO.buscarItens(codigo);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
