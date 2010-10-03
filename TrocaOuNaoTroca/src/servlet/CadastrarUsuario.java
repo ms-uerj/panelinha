@@ -67,6 +67,7 @@ public class CadastrarUsuario extends HttpServlet {
 		String confirmacao = request.getParameter("confirmacao");
 		String sexo = request.getParameter("sexo");
 		String matricula = request.getParameter("matricula");
+		String area = request.getParameter("area");
 
 		boolean cadastrar = true;
 		String erro = "<font color='red'>";
@@ -99,7 +100,7 @@ public class CadastrarUsuario extends HttpServlet {
 		if (cadastrar) {
 
 			Usuario usuario = new Usuario(email, matricula, nome, senha, sexo,
-					sobrenome);
+					sobrenome, area);
 
 			try {
 				UsuarioDAO.cadastrarUsuario(usuario);
@@ -115,7 +116,7 @@ public class CadastrarUsuario extends HttpServlet {
 
 		if (cadastrar) {
 			sessao.setAttribute("mensagem", "Cadastro realizado com sucesso");
-			rd = request.getRequestDispatcher("index.html");
+			rd = request.getRequestDispatcher("index.jsp");
 		} else {
 			sessao.setAttribute("erros", erro+"</font><hr>");
 			request.setAttribute("nome", nome);

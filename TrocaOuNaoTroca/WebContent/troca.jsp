@@ -19,7 +19,8 @@
 </head>
 <body>
 <center>
-<h2><b>Dados da Troca</b></h2><hr>
+<h2><b>Dados da Troca | <a href="index.jsp">Home</a></h2>
+<hr>
 
 <h3><b>Usuários envolvidos:<b></h3>
 

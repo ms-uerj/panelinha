@@ -42,7 +42,7 @@
 						                                   <%="Usuário: "+usuario.getNome() %>
 						                                <% } %>
 						    </td>
-							<td align="right"><% if(usuario==null){ %><a href="cadastro.jsp">Cadastre-se &raquo;&nbsp;
+							<td align="right"><% if(usuario==null){ %><a href="cadastro.jsp">Cadastre-se &raquo;&nbsp;&nbsp;</a>
 							                  <input class="logar" type="button" value="Entrar"></td><% } %>
 						</tr>
 					</table>
@@ -50,29 +50,40 @@
 				<% if(usuario==null){ %>
 				<div id="logon_extra">
 					<center>
-						Entre e troque!
 						<form action="Login" method="POST">
-						<a href="PaginaUsuario?cod=1">clique</a><br>
-						<a href="PaginaItem?cod=1">clique item</a>
+						<br>
+						<font size=2>LOGIN:</font>&nbsp;<input type="text" name="login">
 						<br>
 						<br>
-						<font size=2>LOGIN:</font>&nbsp;<input type="text" name="login" value="111111">
+						<font size=2>SENHA:</font>&nbsp;<input type="text" name="senha">
 						<br>
 						<br>
-						<font size=2>SENHA:</font>&nbsp;<input type="text" name="senha" value="senha">
-						<br>
-						<br>
-						<input type="submit" value="Confirmar">&nbsp;<input type="button" value="Cancelar">
+						<input type="submit" value="Entrar">
 						</form>
 					</center>
 				</div>
 				<% } %>
 				
-				<div id="logo">Logo</div>			
+				<div id="logo"> 
+					<input name="busca" title="Buscar" type="text"><input type="button" value="Buscar"> 
+				</div>			
 				
-				<div id="conteudo">Conteudo</div>			
+				<div id="conteudo">
+				<br>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sagittis odio at tortor varius malesuada. Vestibulum pharetra adipiscing pharetra. Proin nec porttitor augue. Ut elementum dolor quis dolor sagittis tempor. Praesent vitae viverra leo. Etiam dapibus eleifend varius. In dapibus consectetur placerat. Praesent mollis interdum euismod. Vivamus vitae vulputate dolor. Suspendisse commodo quam quis lorem lobortis nec dictum lorem gravida. In neque turpis, lacinia sit amet egestas quis, feugiat vitae orci. Duis aliquet posuere malesuada. Nulla ut est vel quam porta tincidunt et ut eros. Nam tristique tincidunt tempus. Duis nec purus augue, in aliquet nisl. Fusce tristique scelerisque elementum.
+				</div>			
 				
-				<div id="news">News</div>
+				<div id="news">
+				<b><u>Últimos Produtos cadastrados</u></b>
+				<br><br><center>
+				<a href="PaginaItem?cod=4"><img src="http://www.concamusic.com.br/images/CD%20INIMIGOS%20DA%20HP%20-%20E%20QUEM%20NAO%20GOSTA%20DO%20INIMIGOS.jpg" width="100" height="100"><br>
+				Inimigos da HP - ao vivo (CD)</a><br><br>
+				<a href="PaginaItem?cod=5"><img src="http://2.bp.blogspot.com/_CWq0wF54ukU/SwREe7U4cEI/AAAAAAAAD1E/ReQ4-ix-LnM/s1600/Bastardos+Ingl%C3%B3rios+-+DVDRip+-+RMVB+-+Legendado" width="100" height="100"><br>
+				Bastardos Inglórios (DVD)</a><br><br>
+				<a href="PaginaItem?cod=2"><img src="http://livrosgratis.net/upload/capas/fim_do_jogo.jpg" width="100" height="100"><br>
+				Fim de Jogo (Livro)</a><br><br>
+				</center>
+				</div>
 				
 				<div id="rodape">
 				<table width="100%" cellpadding="1">

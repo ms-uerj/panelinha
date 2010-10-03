@@ -8,9 +8,30 @@ import java.util.ArrayList;
 
 import model.Item;
 import model.Troca;
+import model.Usuario;
 import factory.ItemFactory;
 
 public class ItemDAO {
+
+	public static void cadastrarItem(Item item)
+			throws ClassNotFoundException, SQLException {
+
+		String sql = "Insert into tb_item (titulo, descricao, imagem, fk_categoria, status, data_cadastro) "
+				+ "values (?,?,?,?,0,current_date)";
+		Connection conn = Conexao.obterConexaoMySQL();
+		PreparedStatement ps = conn.prepareStatement(sql);
+
+		ps.setString(1, item.getTitulo());
+		ps.setString(2, item.getDescricao_item());
+		ps.setString(3, item.getImagem_item());
+		ps.setInt(4, Integer.parseInt(item.getCategoria()));
+
+		ps.execute();
+
+		ps.close();
+		conn.close();
+
+	}
 
 	public static ArrayList<Item> buscarItens(String id_usuario)
 			throws ClassNotFoundException, SQLException {
@@ -84,8 +105,8 @@ public class ItemDAO {
 
 	}
 
-	public static ArrayList<Item> buscarItens(int id_troca) throws ClassNotFoundException,
-			SQLException {
+	public static ArrayList<Item> buscarItens(int id_troca)
+			throws ClassNotFoundException, SQLException {
 
 		String sql = "Select i.*, c.* from tb_item as i, tb_categoria as c "
 				+ "where i.fk_categoria=c.id_categoria and fk_troca=?";
@@ -97,7 +118,7 @@ public class ItemDAO {
 		ArrayList<Item> itens = new ArrayList<Item>();
 
 		while (rs.next()) {
-			
+
 			Item item = new Item();
 
 			int categoria = rs.getInt("c.id_categoria");
@@ -110,12 +131,10 @@ public class ItemDAO {
 			item.setImagem_item(rs.getString("imagem"));
 			item.setTitulo(rs.getString("titulo"));
 			item.setDono(rs.getInt("fk_usuario"));
-			
+
 			itens.add(item);
 
 		}
-		
-		
 
 		rs.close();
 		ps.close();
