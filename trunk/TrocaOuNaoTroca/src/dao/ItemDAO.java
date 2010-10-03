@@ -16,8 +16,8 @@ public class ItemDAO {
 	public static void cadastrarItem(Item item)
 			throws ClassNotFoundException, SQLException {
 
-		String sql = "Insert into tb_item (titulo, descricao, imagem, fk_categoria, status, data_cadastro) "
-				+ "values (?,?,?,?,0,current_date)";
+		String sql = "Insert into tb_item (titulo, descricao, imagem, fk_categoria, status, data_cadastro, fk_usuario) "
+				+ "values (?,?,?,?,1,current_date,?)";
 		Connection conn = Conexao.obterConexaoMySQL();
 		PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -25,8 +25,10 @@ public class ItemDAO {
 		ps.setString(2, item.getDescricao_item());
 		ps.setString(3, item.getImagem_item());
 		ps.setInt(4, Integer.parseInt(item.getCategoria()));
+		ps.setInt(5, item.getDono());
 
 		ps.execute();
+		
 
 		ps.close();
 		conn.close();

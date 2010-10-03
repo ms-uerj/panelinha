@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<h2><b>Dados do usuário | <a href="index.jsp">Home</a></h2>
+<h2><b>Dados do usuário | <a href="index.jsp">Home</a> | <a href="cadastrarItem.jsp">Novo Item</a></h2>
 <hr> 
 <br><br>
 
