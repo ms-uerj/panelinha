@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.Categoria;
 import model.Item;
 import model.Troca;
 import model.Usuario;
@@ -22,9 +23,9 @@ public class ItemDAO {
 		PreparedStatement ps = conn.prepareStatement(sql);
 
 		ps.setString(1, item.getTitulo());
-		ps.setString(2, item.getDescricao_item());
-		ps.setString(3, item.getImagem_item());
-		ps.setInt(4, Integer.parseInt(item.getCategoria()));
+		ps.setString(2, item.getDescricao());
+		ps.setString(3, item.getImagem());
+		ps.setInt(4, item.getCategoria().getId());
 		ps.setInt(5, item.getDono());
 
 		ps.execute();
@@ -38,7 +39,7 @@ public class ItemDAO {
 	public static ArrayList<Item> buscarItens(String id_usuario)
 			throws ClassNotFoundException, SQLException {
 
-		String sql = "Select i.*, c.descricao from tb_item as i, tb_categoria as c where i.fk_usuario=? "
+		String sql = "Select i.*, c.descricao, c.id_categoria from tb_item as i, tb_categoria as c where i.fk_usuario=? "
 				+ "and fk_categoria=id_categoria and i.status=1 order by i.data_cadastro";
 
 		Connection conn = Conexao.obterConexaoMySQL();
@@ -50,15 +51,20 @@ public class ItemDAO {
 		ArrayList<Item> itens = new ArrayList<Item>();
 
 		while (rs.next()) {
-			Item item = new Item();
+			Item item = ItemFactory.getGenericItem(rs.getInt("id_categoria"));
 
 			item.setId(rs.getInt("i.id_item"));
 			item.setTitulo(rs.getString("titulo"));
-			item.setCategoria(rs.getString("c.descricao"));
-			item.setDescricao_item(rs.getString("i.descricao"));
-			item.setImagem_item(rs.getString("imagem"));
-			item.setStatus_item(0);
-			item.setData_cadastro(rs.getDate("data_cadastro"));
+			
+			Categoria cat = new Categoria();
+			cat.setId(rs.getInt("id_categoria"));
+			cat.setDescricao(rs.getString("c.descricao"));		
+			item.setCategoria(cat);
+			
+			item.setDescricao(rs.getString("i.descricao"));
+			item.setImagem(rs.getString("imagem"));
+			item.setStatus(0);
+			item.setDataCadastro(rs.getDate("data_cadastro"));
 
 			itens.add(item);
 
@@ -89,11 +95,16 @@ public class ItemDAO {
 			int categoria = rs.getInt("c.id_categoria");
 
 			item = ItemFactory.getItem(categoria, rs);
-			item.setCategoria(rs.getString("c.descricao"));
-			item.setData_cadastro(rs.getDate("data_cadastro"));
-			item.setDescricao_item(rs.getString("i.descricao"));
+			
+			Categoria cat = new Categoria();
+			cat.setId(rs.getInt("id_categoria"));
+			cat.setDescricao(rs.getString("c.descricao"));		
+			item.setCategoria(cat);
+			
+			item.setDataCadastro(rs.getDate("data_cadastro"));
+			item.setDescricao(rs.getString("i.descricao"));
 			item.setId(rs.getInt("id_item"));
-			item.setImagem_item(rs.getString("imagem"));
+			item.setImagem(rs.getString("imagem"));
 			item.setTitulo(rs.getString("titulo"));
 			item.setDono(rs.getInt("fk_usuario"));
 
@@ -121,16 +132,17 @@ public class ItemDAO {
 
 		while (rs.next()) {
 
-			Item item = new Item();
-
-			int categoria = rs.getInt("c.id_categoria");
-
-			item = ItemFactory.getItem(categoria, rs);
-			item.setCategoria(rs.getString("c.descricao"));
-			item.setData_cadastro(rs.getDate("data_cadastro"));
-			item.setDescricao_item(rs.getString("i.descricao"));
+			Item item = ItemFactory.getGenericItem(rs.getInt("c.id_categoria"));
+			
+			Categoria cat = new Categoria();
+			cat.setId(rs.getInt("id_categoria"));
+			cat.setDescricao(rs.getString("c.descricao"));		
+			item.setCategoria(cat);
+			
+			item.setDataCadastro(rs.getDate("data_cadastro"));
+			item.setDescricao(rs.getString("i.descricao"));
 			item.setId(rs.getInt("id_item"));
-			item.setImagem_item(rs.getString("imagem"));
+			item.setImagem(rs.getString("imagem"));
 			item.setTitulo(rs.getString("titulo"));
 			item.setDono(rs.getInt("fk_usuario"));
 
@@ -146,14 +158,14 @@ public class ItemDAO {
 
 	}
 
-	public static void porNaTroca(Troca troca, Item item)
+	public static void porNaTroca(int idTroca, Item item)
 			throws ClassNotFoundException, SQLException {
 
 		String sql = "Update tb_item set fk_troca=? where id_item=?";
 		Connection conn = Conexao.obterConexaoMySQL();
 		PreparedStatement ps = conn.prepareStatement(sql);
 
-		ps.setDouble(1, troca.getId());
+		ps.setDouble(1, idTroca);
 		ps.setInt(2, item.getId());
 		ps.execute();
 

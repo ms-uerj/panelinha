@@ -85,9 +85,11 @@ public class NovaTroca extends HttpServlet {
 		itens.add(i2);
 		troca.setItens(itens);
 		
-		TrocaDAO.inserirTroca(troca);
+		int token = 1 + (int)(Math.random() * 100);
 		
-	    RequestDispatcher rd = request.getRequestDispatcher("PaginaTroca?cod="+troca.getId());
+		int idTroca = TrocaDAO.inserirTroca(troca, token);
+		
+	    RequestDispatcher rd = request.getRequestDispatcher("PaginaTroca?cod="+idTroca);
 	    rd.forward(request, response);
 	    return;
 		
