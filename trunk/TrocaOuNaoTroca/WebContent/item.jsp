@@ -18,11 +18,11 @@
 <hr> 
 <br><br>
 
-<img width="250" height="300" src="<%=item.getImagem_item() %>"><br><br>
+<img width="250" height="300" src="<%=item.getImagem() %>"><br><br>
 
 <b>Título: </b><%=item.getTitulo() %><br>
-<b>Categoria: </b><%=item.getCategoria() %><br>
-<b>Data de cadastro: </b><%=formatador.format(item.getData_cadastro().getTime()) %><br><br>
+<b>Categoria: </b><%=item.getCategoria().getDescricao() %><br>
+<b>Data de cadastro: </b><%=formatador.format(item.getDataCadastro().getTime()) %><br><br>
 
 <a href="PaginaUsuario?cod=<%=item.getDono() %>">Perfil do Dono &raquo;</a><br><br>
 
@@ -55,7 +55,7 @@
 
 <% } } } }%>
 
-<b>Descrição: </b><%=item.getDescricao_item() %><br><br>
+<b>Descrição: </b><%=item.getDescricao() %><br><br>
 
 <% Usuario usuario = (Usuario) session.getAttribute("usuario");
    

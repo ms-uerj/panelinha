@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.ItemDAO;
+import factory.ItemFactory;
 
+import model.Categoria;
 import model.Item;
 import model.Usuario;
 
@@ -56,12 +58,14 @@ public class CadastrarItem extends HttpServlet {
 		String descricao = request.getParameter("descricao");
 		String categoria = request.getParameter("categoria");
 		
-		Item item = new Item();
+		Item item = ItemFactory.getGenericItem(Integer.parseInt(categoria));
 		
 		item.setTitulo(titulo);
-		item.setImagem_item(imagem);
-		item.setDescricao_item(descricao);
-		item.setCategoria(categoria);
+		item.setImagem(imagem);
+		item.setDescricao(descricao);
+		Categoria c1 = new Categoria();
+		c1.setId(Integer.parseInt(categoria));
+		item.setCategoria(c1);
 		
 		HttpSession session = request.getSession();
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
