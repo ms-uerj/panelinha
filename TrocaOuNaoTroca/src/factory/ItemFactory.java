@@ -43,28 +43,5 @@ public class ItemFactory {
 		return null;
 
 	}
-	
-	public static Item getGenericItem(int cat){
-
-		switch (cat){
-		case 1:
-			Livro livro = new Livro();
-			return livro;
-		case 2:
-			Cd cd = new Cd();
-			return cd;
-		case 3:
-			Dvd dvd = new Dvd();
-			return dvd;
-		case 4:
-			Apostila apostila = new Apostila();
-			return apostila;
-		}
-		
-		
-		
-		return null;
-
-	}
 
 }

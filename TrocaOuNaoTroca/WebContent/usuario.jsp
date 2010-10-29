@@ -40,12 +40,12 @@
 <% Iterator iterator = itens.iterator();
    while (iterator.hasNext()){ 
       	Item item = (Item) iterator.next(); 
-	  	String dti = formatador.format(item.getDataCadastro().getTime());
+	  	String dti = formatador.format(item.getData_cadastro().getTime());
 %>
       
 <tr>
 <td><a href="PaginaItem?cod=<%=item.getId() %>"><%=item.getTitulo() %></a></td>
-<td><%=item.getCategoria().getDescricao() %></td>
+<td><%=item.getCategoria() %></td>
 <td><%=dti %></td>
 <tr>
 
