@@ -1,0 +1,103 @@
+body
+{
+	background-image:url(../imagens/fundo.png);
+	background-attachment:fixed;
+}
+
+#wrap
+{
+	background-color: #F8F8FF;
+	min-height: 100%;
+	width: 900px;
+	margin: auto; 
+	position: relative;
+}
+
+#auxiliar
+{
+	padding-bottom: 550px;
+}
+
+#logon
+{
+	background-color: #CDC9C9;
+	height: 40px;
+	width: 900px;
+	position: relative;
+}
+
+#logon_extra
+{
+	background-color: #DCDCDC;
+	height:160px;
+	width: 900px;
+	display: none;	
+}
+
+#logo
+{
+	background-image:url(../imagens/Banner.png);
+	height: 200px;
+	width: 850px;
+	margin-bottom: 25px;
+	position: relative;
+	left: 25px;
+	text-align: center;
+}
+
+#logo input
+{
+	position: relative;
+	top: 60%;
+}
+
+#conteudo
+{
+	background-color: #B22222;
+	height: 500px;
+	width: 575px;
+	position: relative;
+	left: 25px;
+	float: left;
+	margin-bottom: 25px;
+	}
+
+#news
+{
+	background-color: #FFFF00;
+	height: 500px;
+	width: 250px;
+	float: right;	
+	position: relative;
+	right: 25px;
+}
+
+#rodape
+{
+	font-size: 12px;
+	background-color: #DCDCDC;
+	height: 25px;
+	width: 900px;
+	clear: both;
+	position: relative;
+	bottom: 0px;
+}
+
+/*Página de Cadastro*/
+
+#conteudo_cadastro
+{
+	background-color: #FFFFFF;
+	height: 550px;
+	width: 850px;
+	position: relative;
+	left: 25px;
+	float: left;
+	margin-bottom: 25px;
+	overflow:scroll;
+}
+
+.coluna_esquerda
+{
+	text-align: right;
+}
