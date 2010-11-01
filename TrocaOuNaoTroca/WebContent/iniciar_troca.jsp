@@ -22,11 +22,11 @@
 
 <h2><b>Troca em andamento</b></h2><hr> 
 
-Você se mostrou interessado no(a) <a target="main" href="PaginaItem?cod=<%=i2.getId() %>"><%=i2.getCategoria() %> <%=i2.getTitulo() %></a> 
+Você se mostrou interessado no(a) <a target="main" href="PaginaItem?cod=<%=i2.getId() %>"><%=i2.getCategoria().getDescricao() %> <%=i2.getTitulo() %></a> 
 do usuário <a target="main" href="PaginaUsuario?cod=<%=u2.getId() %>"><%=u2.getNome() %></a>
 <br><br>
 
-<img width="100" height="100" src="<%=i2.getImagem_item() %>"><br><br>
+<img width="100" height="100" src="<%=i2.getImagem() %>"><br><br>
 
 Selecione um de seus itens para trocar pelo item acima. Lembrando que ainda será necessário que <a target="main" href="PaginaUsuario?cod=<%=u2.getId() %>"><%=u2.getNome() %></a> aceite sua proposta.
 <br><br>
@@ -41,18 +41,19 @@ Selecione um de seus itens para trocar pelo item acima. Lembrando que ainda será
 
 <% Iterator iterator = itens.iterator();
    while (iterator.hasNext()){ 
-      	Item item = (Item) iterator.next(); 
-	  	String dti = formatador.format(item.getData_cadastro().getTime());
+      Item item = (Item) iterator.next(); 
+      if(item.getStatus()==1){
+	  	String dti = formatador.format(item.getDataCadastro().getTime());
 %>
       
 <tr>
 <td><input type="radio" name="item1" value="<%=item.getId() %>" SELECTED></td>
 <td><a href="PaginaItem?cod=<%=item.getId() %>"><%=item.getTitulo() %></a></td>
-<td><%=item.getCategoria() %></td>
+<td><%=item.getCategoria().getDescricao() %></td>
 <td><%=dti %></td>
 <tr>
 
-<% } %>
+<%} } %>
 </table>
 <br><br>
 <input type="hidden" value="<%=u2.getId() %>" name="user2">

@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="model.Usuario, model.Item" %>
+<%@ page import="model.Usuario, model.Item, model.Troca" %>
 <%@ page import="java.util.Iterator, java.util.ArrayList, java.text.SimpleDateFormat" %>
 
 <% Usuario usuario = (Usuario) request.getAttribute("usuario");
-   ArrayList<Item> itens = (ArrayList<Item>) request.getAttribute("itens"); %>
+   ArrayList<Item> itens = (ArrayList<Item>) request.getAttribute("itens");
+   ArrayList<Troca> trocasAbertas = (ArrayList<Troca>) request.getAttribute("trocasAbertas");
+   ArrayList<Troca> trocasFechadas = (ArrayList<Troca>) request.getAttribute("trocasFechadas");
+    %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Perfil do(a) <%=usuario.getNome() %></title>
 </head>
 <body>
 
@@ -30,7 +33,7 @@
 
 <h3>Galeria de itens para troca</h3><hr>
 
-<table border="1">
+<table border="1" width='60%'>
 <tr>
 <td>Título</td>
 <td>Categoria</td>
@@ -50,7 +53,83 @@
 <tr>
 
 <% } %>
+</table>
 
+
+<% Usuario logado = (Usuario) session.getAttribute("usuario");
+   
+   if(logado!=null){
+       if(logado.getId()==usuario.getId()){ %>
+       
+<h3>Trocas em aberto</h3><hr>
+
+<table border="1" width='60%'>
+<tr>
+<td>Código</td>
+<td>Quem iniciou</td>
+<td>Quem deu a resposta</td>
+<td>Data de Início</td>
+<tr>
+
+<% Iterator iteratorTrocasAbertas = trocasAbertas.iterator();
+   while (iteratorTrocasAbertas.hasNext()){ 
+      	Troca troca= (Troca) iteratorTrocasAbertas.next(); 
+	  	String dti = formatador.format(troca.getDataPedido().getTime());
+%>
+      
+<tr>
+<td><a href="PaginaTroca?cod=<%=troca.getId() %>"><%=troca.getId() %></a></td>
+<td><a href="PaginaUsuario?cod=<%=troca.getUsuario1().getId() %>"><%=troca.getUsuario1().getNome() %></a></td>
+<td><a href="PaginaUsuario?cod=<%=troca.getUsuario2().getId() %>"><%=troca.getUsuario2().getNome() %></a></td>
+<td><%=dti %></td>
+<tr>
+
+<% } %>
+</table>
+        
+        
+<% } } %>
+
+
+
+
+
+<h3>Histórico de Trocas</h3><hr>
+
+<table border="1" width='60%'>
+<tr>
+<td>Código</td>
+<td>Quem iniciou</td>
+<td>Quem deu a resposta</td>
+<td>Data de Início</td>
+<td>Status</td>
+<tr>
+
+<% Iterator iteratorTrocasFechadas = trocasFechadas.iterator();
+   while (iteratorTrocasFechadas.hasNext()){ 
+      	Troca troca= (Troca) iteratorTrocasFechadas.next(); 
+	  	String dti = formatador.format(troca.getDataPedido().getTime());
+	  	String status = "";
+	  	if(troca.getStatus()== 2){
+	  	    status = "Concluída";
+	  	}else{
+	  	    status = "Cancelada";
+	  	}
+	  	  
+%>
+      
+<tr>
+<td><a href="PaginaTroca?cod=<%=troca.getId() %>"><%=troca.getId() %></a></td>
+<td><a href="PaginaUsuario?cod=<%=troca.getUsuario1().getId() %>"><%=troca.getUsuario1().getNome() %></a></td>
+<td><a href="PaginaUsuario?cod=<%=troca.getUsuario2().getId() %>"><%=troca.getUsuario2().getNome() %></a></td>
+<td><%=dti %></td>
+<td><%=status %></td>
+
+
+<tr>
+
+<% } %>
+</table>
 
 
 
@@ -58,7 +137,7 @@
 <%=request.getAttribute("erro") %>
 <% } %>
 
-</table>
+
 
 </body>
 </html>
