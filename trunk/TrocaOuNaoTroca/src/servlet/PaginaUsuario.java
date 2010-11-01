@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Item;
+import model.Troca;
 import model.Usuario;
 
 import dao.ItemDAO;
+import dao.TrocaDAO;
 import dao.UsuarioDAO;
 
 /**
@@ -76,7 +78,7 @@ public class PaginaUsuario extends HttpServlet {
 						"Usuário não encontrado no sistema");
 
 			} else {
-
+                // Buscando os itens do usuário
 				ArrayList<Item> itens = null;
 
 				try {
@@ -89,7 +91,23 @@ public class PaginaUsuario extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
+				ArrayList<Troca> trocasAbertas = null;
+				ArrayList<Troca> trocasFechadas = null;
+				
+				try {
+					trocasAbertas = TrocaDAO.buscarTrocasAbertas(codigo);
+					trocasFechadas = TrocaDAO.buscarTrocasFechadas(codigo);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
+				request.setAttribute("trocasAbertas", trocasAbertas);
+				request.setAttribute("trocasFechadas", trocasFechadas);
 				request.setAttribute("itens", itens);
 				request.setAttribute("usuario", usuario);
 				

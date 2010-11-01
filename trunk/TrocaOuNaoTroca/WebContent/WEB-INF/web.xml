@@ -83,6 +83,24 @@
 		<servlet-class>
 		servlet.CadastrarItem</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		AceitaTroca</display-name>
+		<servlet-name>AceitaTroca</servlet-name>
+		<servlet-class>
+		servlet.AceitaTroca</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		CancelarTroca</display-name>
+		<servlet-name>CancelarTroca</servlet-name>
+		<servlet-class>
+		servlet.CancelarTroca</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>CadastrarUsuario</servlet-name>
 		<url-pattern>/CadastrarUsuario</url-pattern>
@@ -118,6 +136,14 @@
 	<servlet-mapping>
 		<servlet-name>CadastrarItem</servlet-name>
 		<url-pattern>/CadastrarItem</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AceitaTroca</servlet-name>
+		<url-pattern>/AceitaTroca</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CancelarTroca</servlet-name>
+		<url-pattern>/CancelarTroca</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

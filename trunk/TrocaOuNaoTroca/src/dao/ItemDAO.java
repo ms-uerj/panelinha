@@ -14,8 +14,8 @@ import factory.ItemFactory;
 
 public class ItemDAO {
 
-	public static void cadastrarItem(Item item)
-			throws ClassNotFoundException, SQLException {
+	public static void cadastrarItem(Item item) throws ClassNotFoundException,
+			SQLException {
 
 		String sql = "Insert into tb_item (titulo, descricao, imagem, fk_categoria, status, data_cadastro, fk_usuario) "
 				+ "values (?,?,?,?,1,current_date,?)";
@@ -29,7 +29,6 @@ public class ItemDAO {
 		ps.setInt(5, item.getDono());
 
 		ps.execute();
-		
 
 		ps.close();
 		conn.close();
@@ -55,16 +54,17 @@ public class ItemDAO {
 
 			item.setId(rs.getInt("i.id_item"));
 			item.setTitulo(rs.getString("titulo"));
-			
+
 			Categoria cat = new Categoria();
 			cat.setId(rs.getInt("id_categoria"));
-			cat.setDescricao(rs.getString("c.descricao"));		
+			cat.setDescricao(rs.getString("c.descricao"));
 			item.setCategoria(cat);
-			
+
 			item.setDescricao(rs.getString("i.descricao"));
 			item.setImagem(rs.getString("imagem"));
 			item.setStatus(0);
 			item.setDataCadastro(rs.getDate("data_cadastro"));
+			item.setStatus(rs.getInt("status"));
 
 			itens.add(item);
 
@@ -95,18 +95,19 @@ public class ItemDAO {
 			int categoria = rs.getInt("c.id_categoria");
 
 			item = ItemFactory.getItem(categoria, rs);
-			
+
 			Categoria cat = new Categoria();
 			cat.setId(rs.getInt("id_categoria"));
-			cat.setDescricao(rs.getString("c.descricao"));		
+			cat.setDescricao(rs.getString("c.descricao"));
 			item.setCategoria(cat);
-			
+
 			item.setDataCadastro(rs.getDate("data_cadastro"));
 			item.setDescricao(rs.getString("i.descricao"));
 			item.setId(rs.getInt("id_item"));
 			item.setImagem(rs.getString("imagem"));
 			item.setTitulo(rs.getString("titulo"));
 			item.setDono(rs.getInt("fk_usuario"));
+			item.setStatus(rs.getInt("status"));
 
 		}
 
@@ -133,18 +134,19 @@ public class ItemDAO {
 		while (rs.next()) {
 
 			Item item = ItemFactory.getGenericItem(rs.getInt("c.id_categoria"));
-			
+
 			Categoria cat = new Categoria();
 			cat.setId(rs.getInt("id_categoria"));
-			cat.setDescricao(rs.getString("c.descricao"));		
+			cat.setDescricao(rs.getString("c.descricao"));
 			item.setCategoria(cat);
-			
+
 			item.setDataCadastro(rs.getDate("data_cadastro"));
 			item.setDescricao(rs.getString("i.descricao"));
 			item.setId(rs.getInt("id_item"));
 			item.setImagem(rs.getString("imagem"));
 			item.setTitulo(rs.getString("titulo"));
 			item.setDono(rs.getInt("fk_usuario"));
+			item.setStatus(rs.getInt("status"));
 
 			itens.add(item);
 
@@ -161,12 +163,26 @@ public class ItemDAO {
 	public static void porNaTroca(int idTroca, Item item)
 			throws ClassNotFoundException, SQLException {
 
-		String sql = "Update tb_item set fk_troca=? where id_item=?";
+		String sql = "Update tb_item set fk_troca=?, status=0 where id_item=?";
 		Connection conn = Conexao.obterConexaoMySQL();
 		PreparedStatement ps = conn.prepareStatement(sql);
 
-		ps.setDouble(1, idTroca);
+		ps.setInt(1, idTroca);
 		ps.setInt(2, item.getId());
+		ps.execute();
+
+		ps.close();
+		conn.close();
+
+	}
+
+	public static void liberarItens(int idTroca)
+			throws ClassNotFoundException, SQLException {
+
+		String sql = "Update tb_item set fk_troca=null, status=1 where fk_troca=?";
+		Connection conn = Conexao.obterConexaoMySQL();
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, idTroca);
 		ps.execute();
 
 		ps.close();
