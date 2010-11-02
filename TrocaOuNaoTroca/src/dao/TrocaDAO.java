@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.Item;
+import model.Mensagem;
 import model.Troca;
 import model.Usuario;
 
@@ -100,6 +101,9 @@ public class TrocaDAO {
 
 			ArrayList<Item> itens = ItemDAO.buscarItens(id);
 			troca.setItens(itens);
+			
+			ArrayList<Mensagem> msgs = MensagemDAO.buscarMensagens(id);
+			troca.setMensagens(msgs);
 
 		}
 

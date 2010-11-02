@@ -12,6 +12,7 @@ public class Troca {
 	private Date dataFim;
 	private int status;
 	private ArrayList<Item> itens;
+	private ArrayList<Mensagem> mensagens;
 
 	public int getId() {
 		return id;
@@ -36,8 +37,6 @@ public class Troca {
 	public void setUsuario2(Usuario usuario2) {
 		this.usuario2 = usuario2;
 	}
-
-	
 
 	public Date getDataPedido() {
 		return dataPedido;
@@ -70,7 +69,13 @@ public class Troca {
 	public void setItens(ArrayList<Item> itens) {
 		this.itens = itens;
 	}
-	
-	
+
+	public ArrayList<Mensagem> getMensagens() {
+		return mensagens;
+	}
+
+	public void setMensagens(ArrayList<Mensagem> mensagens) {
+		this.mensagens = mensagens;
+	}
 
 }

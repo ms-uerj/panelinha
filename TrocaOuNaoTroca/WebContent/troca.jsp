@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="model.Usuario, model.Item, model.Troca" %>
+<%@ page import="model.Usuario, model.Item, model.Troca, model.Mensagem" %>
 <%@ page import="java.util.Iterator, java.util.ArrayList, java.text.SimpleDateFormat" %>
 
 <%
@@ -9,6 +9,7 @@
    Usuario user2 = troca.getUsuario2();
    
    ArrayList<Item> itens = troca.getItens(); 
+   ArrayList<Mensagem> msgs = troca.getMensagens();
    
    SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");%>
    
@@ -21,7 +22,7 @@
 </head>
 <body>
 
-<h2><b>Dados da Troca | <a href="index.jsp">Home</a></h2>
+<h2><b>Dados da Troca | <a href="index.jsp">Home</a></b></h2>
 <hr>
 
 Código da Troca: <%=troca.getId() %><br>
@@ -52,7 +53,7 @@ Data de fim:
 <% } %>
 <br>
 
-<h3><b>Usuários envolvidos:<b></h3>
+<h3><b>Usuários envolvidos:</b></h3>
 
 <% Iterator iterator = itens.iterator();
    String itens1 = "";
@@ -92,7 +93,45 @@ itens na troca:<br>
 <input type="submit" value="Não Troca">
 </form>
 
-   <% }%> 
+<% } %>
+<h3><b>Mensagens</b></h3>
+<hr>
+<%
+ Iterator iteratorMsg = msgs.iterator();
+
+   while (iteratorMsg.hasNext()){ 
+      	Mensagem msg = (Mensagem) iteratorMsg.next();%>
+<b>De:</b> <%=msg.getRemetente().getNome() %> - <b>Para:</b> <%=msg.getDestinatario().getNome() %> - <%=formatador.format(msg.getDataEnvio().getTime()) %>
+<br><br>
+<b>Texto:</b> <%=msg.getTexto() %>
+<br>
+<hr>
+<% } 
+   if(logado!=null && troca.getStatus()==1 
+      && (logado.getId()==user1.getId() || logado.getId()==user2.getId())){ 
+      
+      int destinatario;
+      
+      if(logado.getId()==user1.getId()){
+         destinatario = user2.getId();
+      }else{
+         destinatario = user1.getId();
+      }
+      
+      
+      
+      %>
+<form action="NovaMensagem" method="POST">
+<br>
+<b>Nova Mensagem:</b><br>
+<textarea name="texto" rows="5" cols="80"></textarea><br>
+<input type="hidden" name="idTroca" value="<%=troca.getId() %>">
+<input type="hidden" name="usuario1" value="<%=logado.getId() %>">
+<input type="hidden" name="usuario2" value="<%=destinatario %>">
+<input type="submit" value="Enviar Mensagem">
+<% } %>
+   
+ 
 
 
 </body>
