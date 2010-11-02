@@ -101,6 +101,15 @@
 		<servlet-class>
 		servlet.CancelarTroca</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		NovaMensagem</display-name>
+		<servlet-name>NovaMensagem</servlet-name>
+		<servlet-class>
+		servlet.NovaMensagem</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>CadastrarUsuario</servlet-name>
 		<url-pattern>/CadastrarUsuario</url-pattern>
@@ -144,6 +153,10 @@
 	<servlet-mapping>
 		<servlet-name>CancelarTroca</servlet-name>
 		<url-pattern>/CancelarTroca</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>NovaMensagem</servlet-name>
+		<url-pattern>/NovaMensagem</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
