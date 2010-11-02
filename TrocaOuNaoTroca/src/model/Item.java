@@ -18,7 +18,7 @@ public interface Item {
 
 	public String getImagem();
 
-	public void setImagem(String imagem);
+	public void setImagem(String imagem_url);
 
 	public int getStatus();
 

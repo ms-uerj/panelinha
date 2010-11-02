@@ -12,7 +12,7 @@ public class Usuario {
 	private String senha;
 	private String sexo;
 	private Date data_cadastro;
-	private String area;
+	private String area_profissional;
 
 	
 	
@@ -21,7 +21,7 @@ public class Usuario {
 	}
 
 	public Usuario(String email, String matricula, String nome, String senha,
-			String sexo, String sobrenome, String area) {
+			String sexo, String sobrenome, String area_profissional) {
 		super();
 		this.email = email;
 		this.matricula = matricula;
@@ -29,7 +29,7 @@ public class Usuario {
 		this.senha = senha;
 		this.sexo = sexo;
 		this.sobrenome = sobrenome;
-		this.area = area;
+		this.area_profissional = area_profissional;
 	}
 
 	public String getMatricula() {
@@ -89,11 +89,11 @@ public class Usuario {
 	}
 
 	public String getArea() {
-		return area;
+		return area_profissional;
 	}
 
-	public void setArea(String area) {
-		this.area = area;
+	public void setArea(String area_profissional) {
+		this.area_profissional = area_profissional;
 	}
 
 	public int getId() {
