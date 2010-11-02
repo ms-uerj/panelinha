@@ -8,7 +8,7 @@ public class Cd implements Item {
 	private String titulo;
 	private String descricao;
 	private Categoria categoria;
-	private String imagem;
+	private String imagem_url;
 	private int status;
 	private Date dataCadastro;
 	private int dono;
@@ -74,11 +74,11 @@ public class Cd implements Item {
 	}
 
 	public String getImagem() {
-		return imagem;
+		return imagem_url;
 	}
 
-	public void setImagem(String imagem) {
-		this.imagem = imagem;
+	public void setImagem(String imagem_url) {
+		this.imagem_url = imagem_url;
 	}
 
 	public int getStatus() {
