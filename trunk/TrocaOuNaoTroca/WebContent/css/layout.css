@@ -2,6 +2,7 @@ body
 {
 	background-image:url(../imagens/fundo.png);
 	background-attachment:fixed;
+	font-family: arial;
 }
 
 #wrap
@@ -13,11 +14,6 @@ body
 	position: relative;
 }
 
-#auxiliar
-{
-	padding-bottom: 550px;
-}
-
 #logon
 {
 	background-color: #CDC9C9;
@@ -26,7 +22,7 @@ body
 	position: relative;
 }
 
-#logon_extra
+#logonExtra
 {
 	background-color: #DCDCDC;
 	height:160px;
@@ -39,6 +35,7 @@ body
 	background-image:url(../imagens/Banner.png);
 	height: 200px;
 	width: 850px;
+	margin-top: 25px;
 	margin-bottom: 25px;
 	position: relative;
 	left: 25px;
@@ -51,9 +48,15 @@ body
 	top: 60%;
 }
 
+#logo select
+{
+	position: relative;
+	top: 60%;
+}
+
 #conteudo
 {
-	background-color: #B22222;
+	background-color: #FFF;
 	height: 500px;
 	width: 575px;
 	position: relative;
@@ -64,12 +67,35 @@ body
 
 #news
 {
-	background-color: #FFFF00;
+	
+	background-color: #FFF;
 	height: 500px;
 	width: 250px;
 	float: right;	
 	position: relative;
 	right: 25px;
+}
+
+#news table
+{
+	height: 100%;
+	width: 100%;
+}
+
+#news table td
+{
+	text-align: center;
+	font-weight:normal;
+}
+
+#news table td a
+{
+	text-decoration:none;
+}
+
+#news td a:hover
+{
+	font-weight:bold;
 }
 
 #rodape
@@ -83,12 +109,56 @@ body
 	bottom: 0px;
 }
 
-/*Página de Cadastro*/
+/*Página de Cadastro de Usuário */
 
-#conteudo_cadastro
+#conteudoCadastro
 {
-	background-color: #FFFFFF;
-	height: 550px;
+	background-color: #FFF;
+	height: 600px;
+	width: 830px;
+	position: relative;
+	left: 25px;
+	float: left;
+	margin-bottom: 25px;
+	padding: 0px 10px 15px;
+}
+
+#conteudoCadastro table
+{
+	width: 100%;
+}
+
+.colunaEsquerda
+{
+	width: 20%;
+	text-align: right;
+}
+
+/*Página de Cadastro de Item */
+#conteudoCadastroItem
+{
+	background-color: #FFF;
+	
+	width: 830px;
+	position: relative;
+	left: 25px;
+	float: left;
+	margin-bottom: 25px;
+	overflow:scroll;
+	padding: 0px 10px 15px;
+}
+
+#conteudoCadastroItem table
+{
+	width: 100%;
+}
+
+/*Página do Perfil*/
+
+#conteudoPerfil
+{
+	background-color: #FFF;
+	height: 500px;
 	width: 850px;
 	position: relative;
 	left: 25px;
@@ -97,7 +167,25 @@ body
 	overflow:scroll;
 }
 
-.coluna_esquerda
+#tbItens table
 {
-	text-align: right;
+	border: 0;
+	text-align: center;
+}
+
+#tbItens  th
+{
+	background-color: #8B0000;
+	color: #fff;
+}
+
+#tbItens td, th
+{
+	border: 0;
+	text-align: center;
+}
+
+#conteudoPerfil .dif
+{
+	background-color: #FFA07A;	
 }
