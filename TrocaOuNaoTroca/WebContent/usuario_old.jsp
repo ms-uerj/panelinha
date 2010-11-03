@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <%@ page import="model.Usuario, model.Item, model.Troca" %>
 <%@ page import="java.util.Iterator, java.util.ArrayList, java.text.SimpleDateFormat" %>
 
@@ -10,50 +8,15 @@
    ArrayList<Troca> trocasAbertas = (ArrayList<Troca>) request.getAttribute("trocasAbertas");
    ArrayList<Troca> trocasFechadas = (ArrayList<Troca>) request.getAttribute("trocasFechadas");
     %>
-    
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<head>
-		<title>Troca ou N&atilde;o Troca?</title>
-		<meta name="author" content="Panelinh@"/>
-		<meta name="description" content="Web site para troca de produtos entre alunos da UERJ"/>
-		<meta name="keywords" content="UERJ, Troca" />		
-		<meta http-equiv="content-language" content="pt-br" />
-		<meta name="robots" content="index" />
-		<link href="css/layout.css" type="text/css" rel="stylesheet">  		
-		<link rel="icon" type="image/x-icon" href="imagens/icone.ico" />
-		<script type="text/javascript" src="jquery/jquery.js"></script>		
-		<script type="text/javascript">
-			$(document).ready(function(){
-				
-			});
-		</script>
-	</head>
-	
-	<body>
-		<div id="wrap">				
-			<div id="logon">
-				<table width="100%" cellpadding="7">				
-					<tr>
-						<td align="left"><b>Bem-vindo Nome</b></td>
-						<td align="right"><input type="button" value="Perfil"> <input type="button" value="Sair"></td>
-					</tr>
-				</table>
-			</div>		
-			
-			<div id="logo">
-					<input name="busca" title="Buscar" type="text">
-					<select>
-						<option value="todos">Todos</option>
-						<option value="livro">Livro</option>
-						<option value="apostila">Apostila</option>
-						<option value="cd">CD</option>
-						<option value="dvd">DVD</option>
-						<option value="outros">Outros</option>
-					</select>
-					<input type="button" value="Buscar">
-			</div>			
-			
-			<div id="conteudoCadastroItem">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Perfil do(a) <%=usuario.getNome() %></title>
+</head>
+<body>
+
 <h2><b>Dados do usuário | <a href="index.jsp">Home</a> | <a href="cadastrarItem.jsp">Novo Item</a></h2>
 <hr> 
 <br><br>
@@ -174,19 +137,7 @@
 <%=request.getAttribute("erro") %>
 <% } %>
 
-	
-			</div>				
-			
-			<div id="rodape">
-					<table width="100%" cellpadding="2">
-						<tr>						
-							<td align="center" width="300px">Termo de Uso</td>
-							<td align="center" width="300px">Pol&iacute;tica de Privacidade</td>
-							<td align="center" width="300px">Ajuda</td>
-							
-						</tr>
-					</table>
-			</div>
-		</div>
-	</body>
+
+
+</body>
 </html>
