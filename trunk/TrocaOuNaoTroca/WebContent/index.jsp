@@ -71,16 +71,18 @@
 			<% } %>
 			
 			<div id="logo">
+			        <form action="BuscarItens" method="POST">
 					<input name="busca" title="Buscar" type="text">
-					<select>
-						<option value="todos">Todos</option>
-						<option value="livro">Livro</option>
-						<option value="apostila">Apostila</option>
-						<option value="cd">CD</option>
-						<option value="dvd">DVD</option>
-						<option value="outros">Outros</option>
+					<select name="cat">
+						<option value="0">Todos</option>
+						<option value="1">Livro</option>
+						<option value="4">Apostila</option>
+						<option value="2">CD</option>
+						<option value="3">DVD</option>
+						<option value="5">Outros</option>
 					</select>
-					<input type="button" value="Buscar">
+					<input type="submit" value="Buscar">
+					</form>
 			</div>			
 			
 			<div id="conteudo">		

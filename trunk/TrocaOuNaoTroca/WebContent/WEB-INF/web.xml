@@ -110,6 +110,15 @@
 		<servlet-class>
 		servlet.NovaMensagem</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		BuscarItens</display-name>
+		<servlet-name>BuscarItens</servlet-name>
+		<servlet-class>
+		servlet.BuscarItens</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>CadastrarUsuario</servlet-name>
 		<url-pattern>/CadastrarUsuario</url-pattern>
@@ -157,6 +166,10 @@
 	<servlet-mapping>
 		<servlet-name>NovaMensagem</servlet-name>
 		<url-pattern>/NovaMensagem</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BuscarItens</servlet-name>
+		<url-pattern>/BuscarItens</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
