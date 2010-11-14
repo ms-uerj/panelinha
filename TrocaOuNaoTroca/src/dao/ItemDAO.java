@@ -176,8 +176,8 @@ public class ItemDAO {
 
 	}
 
-	public static void liberarItens(int idTroca)
-			throws ClassNotFoundException, SQLException {
+	public static void liberarItens(int idTroca) throws ClassNotFoundException,
+			SQLException {
 
 		String sql = "Update tb_item set fk_troca=null, status=1 where fk_troca=?";
 		Connection conn = Conexao.obterConexaoMySQL();
@@ -187,6 +187,51 @@ public class ItemDAO {
 
 		ps.close();
 		conn.close();
+
+	}
+
+	public static ArrayList<Item> buscarItens(String palavra, String categoria)
+			throws ClassNotFoundException, SQLException {
+
+		String catquery = "";
+		
+		if(!categoria.equals("0")){
+			catquery = " and i.fk_categoria="+categoria;
+		}
+		String sql = "Select i.*, c.* from tb_item as i, tb_categoria as c "
+				+ "where i.fk_categoria=c.id_categoria" + catquery + " and (i.titulo like '%"+palavra+"%' or i.descricao like '%"+palavra+"%') and i.status=1";
+		Connection conn = Conexao.obterConexaoMySQL();
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+
+		ArrayList<Item> itens = new ArrayList<Item>();
+
+		while (rs.next()) {
+
+			Item item = ItemFactory.getGenericItem(rs.getInt("c.id_categoria"));
+
+			Categoria cat = new Categoria();
+			cat.setId(rs.getInt("id_categoria"));
+			cat.setDescricao(rs.getString("c.descricao"));
+			item.setCategoria(cat);
+
+			item.setDataCadastro(rs.getDate("data_cadastro"));
+			item.setDescricao(rs.getString("i.descricao"));
+			item.setId(rs.getInt("id_item"));
+			item.setImagem(rs.getString("imagem"));
+			item.setTitulo(rs.getString("titulo"));
+			item.setDono(rs.getInt("fk_usuario"));
+			item.setStatus(rs.getInt("status"));
+
+			itens.add(item);
+
+		}
+
+		rs.close();
+		ps.close();
+		conn.close();
+
+		return itens;
 
 	}
 
