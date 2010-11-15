@@ -105,8 +105,8 @@ public class UsuarioDAO {
 	public static Usuario buscarUsuario(String codigo)
 			throws ClassNotFoundException, SQLException {
 
-		String sql = "Select u.*, a.descricao as area from tb_usuario as u, tb_area as a " +
-				"where id_usuario=? and u.fk_area=a.id_area";
+		String sql = "Select u.*, a.descricao as area from tb_usuario as u, tb_area as a "
+				+ "where id_usuario=? and u.fk_area=a.id_area";
 		Connection conn = Conexao.obterConexaoMySQL();
 		PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -134,6 +134,31 @@ public class UsuarioDAO {
 		conn.close();
 
 		return usuario;
+
+	}
+
+	public static int buscarAreaUsuario(int idUsuario)
+			throws ClassNotFoundException, SQLException {
+
+		String sql = "Select fk_area from tb_usuario"
+				+ " where id_usuario=?";
+		Connection conn = Conexao.obterConexaoMySQL();
+		PreparedStatement ps = conn.prepareStatement(sql);
+
+		ps.setInt(1, idUsuario);
+		ResultSet rs = ps.executeQuery();
+
+		int area = 0;
+
+		if (rs.next()){
+			area = rs.getInt("fk_area");
+		}
+
+		rs.close();
+		ps.close();
+		conn.close();
+
+		return area;
 
 	}
 
