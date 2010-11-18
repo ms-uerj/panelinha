@@ -1,7 +1,7 @@
 body
 {
-	background-image:url(../imagens/fundo.png);
-	background-attachment:fixed;
+	background-image: url(../imagens/fundo.png);
+	background-attachment: fixed;
 	font-family: arial;
 }
 
@@ -11,7 +11,7 @@ body
 	min-height: 100%;
 	width: 900px;
 	margin: auto; 
-	position: relative;
+	position: relative;	
 }
 
 #logon
@@ -32,7 +32,10 @@ body
 
 #logo
 {
-	background-image:url(../imagens/Banner.png);
+	background-image: url(../imagens/banner.png);
+	border-color: #CCC;
+	border-style: double;
+	border-width: 3px;
 	height: 200px;
 	width: 850px;
 	margin-top: 25px;
@@ -57,18 +60,23 @@ body
 #conteudo
 {
 	background-color: #FFF;
+	border-color: #CCC;
+	border-style: double;
+	border-width: 3px;
 	height: 500px;
 	width: 575px;
 	position: relative;
 	left: 25px;
 	float: left;
 	margin-bottom: 25px;
-	}
+}
 
 #news
 {
-	
 	background-color: #FFF;
+	border-color: #CCC;
+	border-style: double;
+	border-width: 3px;
 	height: 500px;
 	width: 250px;
 	float: right;	
@@ -85,17 +93,18 @@ body
 #news table td
 {
 	text-align: center;
-	font-weight:normal;
+	font-weight: normal;
 }
 
 #news table td a
 {
-	text-decoration:none;
+	text-decoration: none;
 }
 
 #news td a:hover
 {
-	font-weight:bold;
+	font-weight: bold;
+	color: #F00;
 }
 
 #rodape
@@ -114,7 +123,10 @@ body
 #conteudoCadastro
 {
 	background-color: #FFF;
-	height: 600px;
+	border-color: #CCC;
+	border-style: double;
+	border-width: 3px;
+	height: 610px;
 	width: 830px;
 	position: relative;
 	left: 25px;
@@ -138,7 +150,10 @@ body
 #conteudoCadastroItem
 {
 	background-color: #FFF;
-	
+	border-color: #CCC;
+	border-style: double;
+	border-width: 3px;
+	height: 650px;
 	width: 830px;
 	position: relative;
 	left: 25px;
@@ -158,6 +173,9 @@ body
 #conteudoPerfil
 {
 	background-color: #FFF;
+	border-color: #CCC;
+	border-style: double;
+	border-width: 3px;
 	height: 500px;
 	width: 850px;
 	position: relative;
@@ -176,7 +194,7 @@ body
 #tbItens  th
 {
 	background-color: #8B0000;
-	color: #fff;
+	color: #FFF;
 }
 
 #tbItens td, th
@@ -188,4 +206,34 @@ body
 #conteudoPerfil .dif
 {
 	background-color: #FFA07A;	
+}
+
+/*Página do Item*/
+
+#wrapItem
+{
+	background-color: #F8F8FF;
+	height: 550px;
+	width: 900px;
+	margin: auto; 
+	position: relative;
+}
+
+#conteudoItem
+{
+	background-color: #FFF;
+	border-color: #CCC;
+	border-style: double;
+	border-width: 3px;
+	height: 550px;
+	width: 850px;
+	clear: both;
+	position: relative;
+	left: 25px;
+	margin-bottom: 25px;
+}
+
+#conteudoItem .colunaEsquerda2
+{
+	text-align: right;
 }
