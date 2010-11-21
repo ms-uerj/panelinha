@@ -1,0 +1,239 @@
+body
+{
+	background-image: url(../imagens/fundo.png);
+	background-attachment: fixed;
+	font-family: arial;
+}
+
+#wrap
+{
+	background-color: #F8F8FF;
+	min-height: 100%;
+	width: 900px;
+	margin: auto; 
+	position: relative;	
+}
+
+#logon
+{
+	background-color: #CDC9C9;
+	height: 40px;
+	width: 900px;
+	position: relative;
+}
+
+#logonExtra
+{
+	background-color: #DCDCDC;
+	height:160px;
+	width: 900px;
+	display: none;	
+}
+
+#logo
+{
+	background-image: url(../imagens/banner.png);
+	border-color: #CCC;
+	border-style: double;
+	border-width: 3px;
+	height: 200px;
+	width: 850px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	position: relative;
+	left: 25px;
+	text-align: center;
+}
+
+#logo input
+{
+	position: relative;
+	top: 60%;
+}
+
+#logo select
+{
+	position: relative;
+	top: 60%;
+}
+
+#conteudo
+{
+	background-color: #FFF;
+	border-color: #CCC;
+	border-style: double;
+	border-width: 3px;
+	height: 500px;
+	width: 575px;
+	position: relative;
+	left: 25px;
+	float: left;
+	margin-bottom: 25px;
+}
+
+#news
+{
+	background-color: #FFF;
+	border-color: #CCC;
+	border-style: double;
+	border-width: 3px;
+	height: 500px;
+	width: 250px;
+	float: right;	
+	position: relative;
+	right: 25px;
+}
+
+#news table
+{
+	height: 100%;
+	width: 100%;
+}
+
+#news table td
+{
+	text-align: center;
+	font-weight: normal;
+}
+
+#news table td a
+{
+	text-decoration: none;
+}
+
+#news td a:hover
+{
+	font-weight: bold;
+	color: #F00;
+}
+
+#rodape
+{
+	font-size: 12px;
+	background-color: #DCDCDC;
+	height: 25px;
+	width: 900px;
+	clear: both;
+	position: relative;
+	bottom: 0px;
+}
+
+/*Página de Cadastro de Usuário */
+
+#conteudoCadastro
+{
+	background-color: #FFF;
+	border-color: #CCC;
+	border-style: double;
+	border-width: 3px;
+	height: 610px;
+	width: 830px;
+	position: relative;
+	left: 25px;
+	float: left;
+	margin-bottom: 25px;
+	padding: 0px 10px 15px;
+}
+
+#conteudoCadastro table
+{
+	width: 100%;
+}
+
+.colunaEsquerda
+{
+	width: 20%;
+	text-align: right;
+}
+
+/*Página de Cadastro de Item */
+#conteudoCadastroItem
+{
+	background-color: #FFF;
+	border-color: #CCC;
+	border-style: double;
+	border-width: 3px;
+	height: 650px;
+	width: 830px;
+	position: relative;
+	left: 25px;
+	float: left;
+	margin-bottom: 25px;
+	overflow:scroll;
+	padding: 0px 10px 15px;
+}
+
+#conteudoCadastroItem table
+{
+	width: 100%;
+}
+
+/*Página do Perfil*/
+
+#conteudoPerfil
+{
+	background-color: #FFF;
+	border-color: #CCC;
+	border-style: double;
+	border-width: 3px;
+	height: 500px;
+	width: 850px;
+	position: relative;
+	left: 25px;
+	float: left;
+	margin-bottom: 25px;
+	overflow:scroll;
+}
+
+#tbItens table
+{
+	border: 0;
+	text-align: center;
+}
+
+#tbItens  th
+{
+	background-color: #8B0000;
+	color: #FFF;
+}
+
+#tbItens td, th
+{
+	border: 0;
+	text-align: center;
+}
+
+#conteudoPerfil .dif
+{
+	background-color: #FFA07A;	
+}
+
+/*Página do Item*/
+
+#wrapItem
+{
+	background-color: #F8F8FF;
+	height: 550px;
+	width: 900px;
+	margin: auto; 
+	position: relative;
+}
+
+#conteudoItem
+{
+	background-color: #FFF;
+	border-color: #CCC;
+	border-style: double;
+	border-width: 3px;
+	height: 550px;
+	width: 850px;
+	clear: both;
+	position: relative;
+	left: 25px;
+	margin-bottom: 25px;
+}
+
+#conteudoItem .colunaEsquerda2
+{
+	text-align: right;
+}
