@@ -3,13 +3,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@ page import="model.Usuario, model.Item, model.Troca" %>
-<%@ page import="java.util.Iterator, java.util.ArrayList, java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Iterator, java.util.ArrayList, java.text.SimpleDateFormat, java.util.HashMap" %>
 
 <% Usuario usuario = (Usuario) request.getAttribute("usuario");
    ArrayList<Item> itens = (ArrayList<Item>) request.getAttribute("itens");
    ArrayList<Troca> trocasAbertas = (ArrayList<Troca>) request.getAttribute("trocasAbertas");
    ArrayList<Troca> trocasFechadas = (ArrayList<Troca>) request.getAttribute("trocasFechadas");
-    %>
+   HashMap<String, Integer> coordenadas = usuario.getCoordenadas();    %>
     
 <html>
 	<head>
@@ -68,7 +68,11 @@
 <b>Email: </b><%=usuario.getEmail() %><br><br>
 <b>Sexo: </b><%=usuario.getSexo() %><br><br>
 <b>Usuário desde: </b><%=dtu %><br><br>
-<b>Área: </b><%=usuario.getArea() %><br><br><br>
+<b>Área: </b><%=usuario.getArea() %><br><br>
+<b>Área rec: </b><%=coordenadas.get("area") %><br><br>
+<b>Cadastrados: </b><%=coordenadas.get("cadastrados") %><br><br>
+<b>Trocados: </b><%=coordenadas.get("trocados") %><br><br>
+<br>
 
 <h3>Galeria de itens para troca</h3><hr>
 

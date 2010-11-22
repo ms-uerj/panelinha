@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import model.Usuario;
 
@@ -126,6 +128,7 @@ public class UsuarioDAO {
 			usuario.setSexo(rs.getString("sexo"));
 			usuario.setArea(rs.getString("area"));
 			usuario.setData_cadastro(rs.getDate("data_cadastro"));
+			usuario.setCoordenadas(RecomendacaoDAO.buscarCoordenadas(usuario));
 
 		}
 
@@ -140,8 +143,7 @@ public class UsuarioDAO {
 	public static int buscarAreaUsuario(int idUsuario)
 			throws ClassNotFoundException, SQLException {
 
-		String sql = "Select fk_area from tb_usuario"
-				+ " where id_usuario=?";
+		String sql = "Select fk_area from tb_usuario" + " where id_usuario=?";
 		Connection conn = Conexao.obterConexaoMySQL();
 		PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -150,7 +152,7 @@ public class UsuarioDAO {
 
 		int area = 0;
 
-		if (rs.next()){
+		if (rs.next()) {
 			area = rs.getInt("fk_area");
 		}
 
@@ -159,6 +161,46 @@ public class UsuarioDAO {
 		conn.close();
 
 		return area;
+
+	}
+
+	public static HashMap<Integer, Usuario> buscarUsuarios(int codigo)
+			throws ClassNotFoundException, SQLException {
+
+		String sql = "SELECT id_usuario, nome, sobrenome " +
+				     "FROM tb_usuario," +
+                     "(SELECT id_item, titulo, fk_usuario " +
+                         "FROM tb_item WHERE status=1 and fk_usuario<>? order by data_cadastro desc limit 0,50) as x " +
+                     "WHERE id_usuario=x.fk_usuario group by id_usuario";
+		Connection conn = Conexao.obterConexaoMySQL();
+		PreparedStatement ps = conn.prepareStatement(sql);
+		
+		ps.setInt(1, codigo);
+
+		ResultSet rs = ps.executeQuery();
+
+		//ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		HashMap<Integer, Usuario> usuarios = new HashMap<Integer, Usuario>();
+
+		while (rs.next()) {
+			Usuario usuario = new Usuario();
+
+			usuario.setId(rs.getInt("id_usuario"));
+			usuario.setNome(rs.getString("nome"));
+			usuario.setSobrenome(rs.getString("sobrenome"));
+	     	usuario.setCoordenadas(RecomendacaoDAO.buscarCoordenadas(usuario));
+	     	
+	     	//usuarios.add(usuario);
+	     	System.out.println("Id: "+usuario.getId());
+	     	usuarios.put(usuario.getId(), usuario);
+
+		}
+
+		rs.close();
+		ps.close();
+		conn.close();
+
+		return usuarios;
 
 	}
 

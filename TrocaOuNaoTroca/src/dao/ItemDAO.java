@@ -211,7 +211,7 @@ public class ItemDAO {
 			Item item = ItemFactory.getGenericItem(rs.getInt("c.id_categoria"));
 
 			Categoria cat = new Categoria();
-			cat.setId(rs.getInt("id_categoria"));
+			cat.setId(rs.getInt("c.id_categoria"));
 			cat.setDescricao(rs.getString("c.descricao"));
 			item.setCategoria(cat);
 
