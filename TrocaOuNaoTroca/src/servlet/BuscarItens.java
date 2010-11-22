@@ -44,6 +44,10 @@ public class BuscarItens extends HttpServlet {
 		String busca = request.getParameter("busca");
 		String categoria = request.getParameter("cat");
 		
+		if(busca==null){
+			busca = "";
+		}
+		
 		if (categoria==null){
 			categoria = "1";
 		}
