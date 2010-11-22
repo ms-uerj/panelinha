@@ -119,6 +119,15 @@
 		<servlet-class>
 		servlet.BuscarItens</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+		Vizinhanca</display-name>
+		<servlet-name>Vizinhanca</servlet-name>
+		<servlet-class>
+		servlet.Vizinhanca</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>CadastrarUsuario</servlet-name>
 		<url-pattern>/CadastrarUsuario</url-pattern>
@@ -170,6 +179,10 @@
 	<servlet-mapping>
 		<servlet-name>BuscarItens</servlet-name>
 		<url-pattern>/BuscarItens</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Vizinhanca</servlet-name>
+		<url-pattern>/Vizinhanca</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

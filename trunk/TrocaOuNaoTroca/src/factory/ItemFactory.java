@@ -8,11 +8,13 @@ import model.Cd;
 import model.Dvd;
 import model.Item;
 import model.Livro;
+import model.Outros;
 
 public class ItemFactory {
 
 	public static Item getItem(int cat, ResultSet rs) throws SQLException {
 
+		System.out.println("Entrou na factory");
 		switch (cat){
 		case 1:
 			Livro livro = new Livro();
@@ -36,11 +38,13 @@ public class ItemFactory {
 			apostila.setEdicao(rs.getInt("edicao"));
 			apostila.setEditora(rs.getString("editora"));
 			return apostila;
+	    default: 
+	    	Outros outro = new Outros();
+	        System.out.println("É outro");
+		    return outro;
+	    	 
 		}
-		
-		
-		
-		return null;
+	
 
 	}
 	
@@ -59,11 +63,12 @@ public class ItemFactory {
 		case 4:
 			Apostila apostila = new Apostila();
 			return apostila;
+		default: 
+	    	Outros outro = new Outros();
+		    return outro;
+	    	 
 		}
 		
-		
-		
-		return null;
 
 	}
 
