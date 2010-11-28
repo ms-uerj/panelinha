@@ -56,7 +56,7 @@
 			</div>			
 			
 			<div id="conteudoCadastroItem">
-<h2><b>Dados do usuário | <a href="index.jsp">Home</a> | <a href="cadastrarItem.jsp">Novo Item</a></h2>
+<h2><b>Dados do usuário | <a href="index.jsp">Home</a> | <a href="cadastrarItem.jsp">Novo Item</a> | <a href="Vizinhanca">Sua Vizinhança</a> </h2>
 <hr> 
 <br><br>
 
@@ -110,7 +110,7 @@
 <tr>
 <td>Código</td>
 <td>Quem iniciou</td>
-<td>Quem deu a resposta</td>
+<td>Quem responderá</td>
 <td>Data de Início</td>
 <tr>
 

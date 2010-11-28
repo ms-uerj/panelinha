@@ -128,7 +128,7 @@ itens na troca:<br>
 <hr>
 <form action="CancelarTroca" method="POST">
 <input type="hidden" name="id_troca" value="<%=troca.getId() %>">
-<input type="submit" value="Não Troca">
+<input type="submit" value="Cancelar Troca">
 </form>
 
 <% } %>

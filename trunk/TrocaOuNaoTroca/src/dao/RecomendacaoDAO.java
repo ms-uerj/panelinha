@@ -8,10 +8,29 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+
+import model.Item;
 import model.Usuario;
 
 public class RecomendacaoDAO {
-
+	
+	public static ArrayList<Item> buscarItensRecomendados(ArrayList<Usuario> vizinhos, Usuario usuario) throws ClassNotFoundException, SQLException{
+		
+		Iterator<Usuario> ivizinhos = vizinhos.iterator();
+		ArrayList<Item> itens = new ArrayList<Item>();
+		
+		while(ivizinhos.hasNext()){
+			Usuario vizinho = ivizinhos.next();
+			Item item = ItemDAO.buscarUltimoItem(vizinho, usuario.getCoordenadas().get("trocados"));
+			
+			if(item!=null){
+				itens.add(item);
+			}
+		}
+		
+		return itens;
+		
+	}
 	public static double buscarProximidade(Usuario u1, Usuario u2) {
 
 		int area1 = u1.getCoordenadas().get("area");
@@ -39,8 +58,8 @@ public class RecomendacaoDAO {
 		while (iusuarios.hasNext()) {
 			Usuario u2 = (Usuario) iusuarios.next();
 			double prox = buscarProximidade(usuario, u2);
-			
-			System.out.println("Id do u2: "+u2.getId()+" | prox: "+prox);
+
+			System.out.println("Id do u2: " + u2.getId() + " | prox: " + prox);
 
 			if (prox < maxProx) {
 				maxProx = prox;
@@ -50,7 +69,7 @@ public class RecomendacaoDAO {
 
 		}
 
-		System.out.println("id que será retornado: "+proximo.getId());
+		System.out.println("id que será retornado: " + proximo.getId());
 		return proximo;
 
 	}
@@ -65,18 +84,19 @@ public class RecomendacaoDAO {
 			usuario.setCoordenadas(coord);
 		}
 
-		HashMap<Integer, Usuario> usuarios = UsuarioDAO.buscarUsuarios(usuario.getId());
+		HashMap<Integer, Usuario> usuarios = UsuarioDAO.buscarUsuarios(usuario
+				.getId());
 		Collection<Usuario> users = usuarios.values();
-		
+
 		ArrayList<Usuario> vizinhos = new ArrayList<Usuario>();
 		int qtd = 5;
-		
-		if(users.size()<5){
-		   qtd = 5;
+
+		if (users.size() < 5) {
+			qtd = 5;
 		}
-		
-		for(int i=0;i<qtd;i++){
-			System.out.println(users.size()+"\n");
+
+		for (int i = 0; i < qtd; i++) {
+			System.out.println(users.size() + "\n");
 			Usuario vizinho = buscarMaisProximo(users, usuario);
 			vizinhos.add(vizinho);
 			users.remove(vizinho);
@@ -110,8 +130,7 @@ public class RecomendacaoDAO {
 
 		coordenadas.put("cadastrados", categoria);
 
-		ArrayList<HashMap<String, Integer>> trocados = buscarQtdItens(usuario,
-				0);
+		ArrayList<HashMap<String, Integer>> trocados = buscarItensAdquiridos(usuario);
 
 		Iterator itrocados = trocados.iterator();
 		int tmaior = -1;
@@ -145,6 +164,45 @@ public class RecomendacaoDAO {
 
 		ps.setInt(1, usuario.getId());
 		ps.setInt(2, status);
+		ResultSet rs = ps.executeQuery();
+
+		ArrayList<HashMap<String, Integer>> qtds = new ArrayList<HashMap<String, Integer>>();
+
+		while (rs.next()) {
+			HashMap<String, Integer> qtd = new HashMap<String, Integer>();
+			qtd.put("categoria", rs.getInt("fk_categoria"));
+			qtd.put("qtd", rs.getInt("qtd"));
+
+			qtds.add(qtd);
+		}
+
+		rs.close();
+		ps.close();
+		conn.close();
+
+		return qtds;
+
+	}
+
+	public static ArrayList<HashMap<String, Integer>> buscarItensAdquiridos(
+			Usuario usuario) throws ClassNotFoundException,
+			SQLException {
+
+		String sql = "SELECT count(*) as qtd, i.fk_categoria " +
+				     "FROM tb_item AS i, tb_troca as t, tb_categoria as c " +
+				     "WHERE i.fk_troca=t.id_troca " +
+				            "AND (t.fk_user_1=? OR fk_user_2=?) " +
+				            "AND i.fk_usuario<>? " +
+				            "AND i.fk_categoria=c.id_categoria " +
+				     "GROUP BY i.fk_categoria, c.descricao;";
+
+		Connection conn = Conexao.obterConexaoMySQL();
+		PreparedStatement ps = conn.prepareStatement(sql);
+
+		ps.setInt(1, usuario.getId());
+		ps.setInt(2, usuario.getId());
+		ps.setInt(3, usuario.getId());
+	
 		ResultSet rs = ps.executeQuery();
 
 		ArrayList<HashMap<String, Integer>> qtds = new ArrayList<HashMap<String, Integer>>();
