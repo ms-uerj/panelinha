@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.RecomendacaoDAO;
 
+import model.Item;
 import model.Usuario;
 
 /**
@@ -53,6 +54,9 @@ public class Vizinhanca extends HttpServlet {
 		try {
 			ArrayList<Usuario> vizinhos = RecomendacaoDAO.buscarVizinhanca(usuario);
 			request.setAttribute("vizinhos", vizinhos);
+			
+			ArrayList<Item> itensRecomendados = RecomendacaoDAO.buscarItensRecomendados(vizinhos, usuario);
+			request.setAttribute("itens", itensRecomendados);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

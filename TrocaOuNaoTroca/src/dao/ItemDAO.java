@@ -119,6 +119,54 @@ public class ItemDAO {
 
 	}
 
+	public static Item buscarUltimoItem(Usuario usuario, int adq) throws ClassNotFoundException,
+			SQLException {
+
+		String sql = "SELECT * FROM tb_item as i, tb_categoria as c" +
+				              ", (SELECT max(id_item) as max FROM tb_item " +
+				              "WHERE fk_usuario=? " +
+				                    "AND fk_categoria=? " +
+				                    "AND status=1) as x " +
+				     "WHERE i.id_item=x.max AND i.fk_categoria=c.id_categoria";
+		
+		Connection conn = Conexao.obterConexaoMySQL();
+		PreparedStatement ps = conn.prepareStatement(sql);
+		
+		ps.setInt(1, usuario.getId());
+		ps.setInt(2, adq);
+		ResultSet rs = ps.executeQuery();
+
+		Item item = null;
+
+		if (rs.next()) {
+
+			int categoria = rs.getInt("c.id_categoria");
+
+			item = ItemFactory.getItem(categoria, rs);
+
+			Categoria cat = new Categoria();
+			cat.setId(rs.getInt("id_categoria"));
+			cat.setDescricao(rs.getString("c.descricao"));
+			item.setCategoria(cat);
+
+			item.setDataCadastro(rs.getDate("data_cadastro"));
+			item.setDescricao(rs.getString("i.descricao"));
+			item.setId(rs.getInt("id_item"));
+			item.setImagem(rs.getString("imagem"));
+			item.setTitulo(rs.getString("titulo"));
+			item.setDono(rs.getInt("fk_usuario"));
+			item.setStatus(rs.getInt("status"));
+
+		}
+
+		rs.close();
+		ps.close();
+		conn.close();
+
+		return item;
+
+	}
+
 	public static ArrayList<Item> buscarItens(int id_troca)
 			throws ClassNotFoundException, SQLException {
 
@@ -194,12 +242,14 @@ public class ItemDAO {
 			throws ClassNotFoundException, SQLException {
 
 		String catquery = "";
-		
-		if(!categoria.equals("0")){
-			catquery = " and i.fk_categoria="+categoria;
+
+		if (!categoria.equals("0")) {
+			catquery = " and i.fk_categoria=" + categoria;
 		}
 		String sql = "Select i.*, c.* from tb_item as i, tb_categoria as c "
-				+ "where i.fk_categoria=c.id_categoria" + catquery + " and (i.titulo like '%"+palavra+"%' or i.descricao like '%"+palavra+"%') and i.status=1";
+				+ "where i.fk_categoria=c.id_categoria" + catquery
+				+ " and (i.titulo like '%" + palavra
+				+ "%' or i.descricao like '%" + palavra + "%') and i.status=1";
 		Connection conn = Conexao.obterConexaoMySQL();
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
